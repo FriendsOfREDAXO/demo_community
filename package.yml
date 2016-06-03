@@ -1,0 +1,20 @@
+package: demo_community
+version: '1.0'
+author: Friends Of REDAXO
+supportpage: https://github.com/FriendsOfREDAXO/demo_community
+
+page:
+    title: 'Community-Demo'
+    pjax: true
+    subpages:
+        description: { title: 'Community-Demo' }
+
+requires:
+    packages:
+        backup: '>=2.0.3'
+        structure/content: '>=2.1.0'
+        rex_markitup: '>=1.4.2'
+        ycorm: '>=1.0'
+        yform: '>=1.0'
+        phpmailer: '>=2.1.0'
+    redaxo: '>=5.1.0'
