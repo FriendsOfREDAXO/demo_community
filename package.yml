@@ -14,7 +14,7 @@ requires:
         backup: '>=2.0.3'
         structure/content: '>=2.1.0'
         rex_markitup: '>=1.4.2'
-        ycorm: '>=1.0'
+        ycom: '>=1.0'
         yform: '>=1.0'
         phpmailer: '>=2.1.0'
     redaxo: '>=5.1.0'
