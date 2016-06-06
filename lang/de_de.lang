@@ -1,5 +1,5 @@
 
 demo_community_description = Beschreibung
 demo_community_description_install_heading = Installation
-demo_community_description_install_body = Gehe zu <a href="{0}">Backup > Import > Vom Server</a> und importiere die Datenbank und den Dateiexport <code>community_base_</code>
+demo_community_description_install_body = Gehe zu <a href="{0}">Backup > Import > Vom Server</a> und importiere die Datenbank und den Dateiexport <code>demo_community</code>
 demo_community_title = Demo
