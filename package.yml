@@ -5,6 +5,7 @@ supportpage: https://github.com/FriendsOfREDAXO/demo_community
 
 page:
     title: 'Community-Demo'
+    perm: demo_community[]
     pjax: true
     subpages:
         description: { title: 'Community-Demo' }
