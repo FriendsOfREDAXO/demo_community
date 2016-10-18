@@ -14,7 +14,7 @@ requires:
     packages:
         backup: '>=2.0.3'
         structure/content: '>=2.1.0'
-        rex_markitup: '>=2.0.0'
+        markitup: '>=3.0.0'
         phpmailer: '>=2.1.0'
         yform: '>=1.0'
         yform/geo: '>=1.0'
