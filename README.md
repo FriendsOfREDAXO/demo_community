@@ -38,7 +38,7 @@ Installation
 
 Die Demo setzt folgende externe AddOns voraus (diese können alle innerhalb von REDAXO über den Installer installiert werden):
 
-- Rex-Markitup
+- Markitup
 - PHP-Mailer
 - YForm inkl. Geo-Plugin
 - YCom
