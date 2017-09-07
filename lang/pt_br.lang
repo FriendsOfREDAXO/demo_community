@@ -1,5 +1,21 @@
 
-demo_community_description = Descrição
-demo_community_description_install_heading = Instalação
-demo_community_description_install_body = Vá para <a href="{0}">Backup > Importar > Do servidor</a> e importe o banco de dados e o arquivo de exportação <code>demo_community</code>
 demo_community_title = Demo
+
+demo_community_install = Instalação
+demo_community_install_heading = Instalação
+demo_community_install_description = Por favor, note que todos os conteúdos do banco de dados serão excluídos durante a instalação!
+demo_community_install_button = Instale o demo
+
+demo_community_confirm_setup = Os arquivos atuais serão deletados. Deseja continuar?
+
+demo_community_package_not_available      = Required version of package <strong>"{0}"</strong> not available for download!
+demo_community_package_not_exists         = Package <strong>"{0}"</strong> does not exist!
+demo_community_package_failed_to_download = Failed to download package <strong>"{0}"</strong>!
+demo_community_package_failed_to_validate = Failed to validate package <strong>"{0}"</strong>!
+demo_community_package_failed_to_extract  = Failed to extract package <strong>"{0}"</strong>!
+demo_community_package_failed_to_install  = Failed to install package <strong>"{0}"</strong>!
+demo_community_package_failed_to_activate = Failed to activate package <strong>"{0}"</strong>!
+demo_community_package_failed_to_import   = Failed to import <strong>"{0}"</strong>!
+
+demo_community_installation_error         = Failed to install demo:
+demo_community_installation_success       = Successfully installed demo!
