@@ -791,6 +791,7 @@ CREATE TABLE `rex_ycom_user` (
   `password` varchar(255) NOT NULL,
   `pic` text NOT NULL,
   `slogan` text NOT NULL,
+  `login_tries` int(2) NOT NULL DEFAULT 0
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
