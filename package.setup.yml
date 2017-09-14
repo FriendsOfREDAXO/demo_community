@@ -1,0 +1,29 @@
+# additional requires (non-system packages)
+requires:
+    packages:
+        markitup: '>=3.0.0'
+        phpmailer: '>=2.1.0'
+        yform: '>=2.0'
+        yform/geo: '>=2.0'
+        ycom: '>=1.0'
+
+# setup config
+# hint: inspect link values inside of REDAXO installer to find out fileIds (numbers) for new packages!
+setup:
+    packages:
+        markitup: 1895    # 3.0.1
+        phpmailer: 1821   # 2.1.2
+        yform: 1986       # 2.2
+        ycom: 1987        # 2.0
+    installSequence:
+        - backup
+        - structure/content
+        - phpmailer
+        - markitup
+        - yform
+        - yform/geo
+        - ycom
+    dbimport:
+        - demo_community.sql
+    fileimport:
+        - demo_community.tar.gz
