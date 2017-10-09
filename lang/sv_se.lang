@@ -1,0 +1,21 @@
+
+demo_community_title = Demo
+
+demo_community_install = Installation
+demo_community_install_heading = Installation
+demo_community_install_description = Observera att allt innehåll i databasen kommer att tas bort under installationen!
+demo_community_install_button = Installera demo
+
+demo_community_confirm_setup = Befintlig data går förlorad. Fortsätt?
+
+demo_community_package_not_available      = Erforderlig version av paketet <b> "{0}" </ b> är inte tillgängligt!
+demo_community_package_not_exists         = Paketet <b> "{0}" </ b> existerar inte!
+demo_community_package_failed_to_download = Fel vid nedladdning av <b> "{0}" </ b>!
+demo_community_package_failed_to_validate = Fel med att validera <b> "{0}" </ b>!
+demo_community_package_failed_to_extract  = Ett fel uppstod när du packade upp <b> "{0}" </ b>!
+demo_community_package_failed_to_install  = Fel uppstod vid installeringen av <b> "{0}" </ b>!
+demo_community_package_failed_to_activate = Aktivering av <b> "{0}" </ b> misslyckades!
+demo_community_package_failed_to_import   = Import av <b> "{0}" </ b> misslyckades!
+
+demo_community_installation_error         = Demo kunde inte installeras:
+demo_community_installation_success       = Demo installerades med framgång!
