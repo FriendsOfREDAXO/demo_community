@@ -1,0 +1,21 @@
+
+demo_community_title = Demo
+
+demo_community_install = Instalación
+demo_community_install_heading = Instalación
+demo_community_install_description = Tenga en cuenta que todos los contenidos de la base de datos se eliminan durante la instalación.
+demo_community_install_button = Instalar demo
+
+demo_community_confirm_setup = Los datos actuales serán eliminados. Continuar?
+
+demo_community_package_not_available      = La versión requerida del paquete <b>"{0}"</b> no está disponible.
+demo_community_package_not_exists         = ¡El paquete <b>"{0}"</b> no existe!
+demo_community_package_failed_to_download = Error al descargar el paquete <b>"{0}"</b>!
+demo_community_package_failed_to_validate = Error al validar el paquete <b>"{0}"</b>!
+demo_community_package_failed_to_extract  = Error al extraer el paquete <b>"{0}"</b>!
+demo_community_package_failed_to_install  = Error al instalar el paquete <b>"{0}"</b>!
+demo_community_package_failed_to_activate = Error al activar el paquete <b>"{0}"</b>!
+demo_community_package_failed_to_import   = Error al importar <b>"{0}"</b>!
+
+demo_community_installation_error         = La demostración no pudo ser instalada:
+demo_community_installation_success       = ¡Demo fue instalada exitosamente!
