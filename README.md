@@ -5,6 +5,7 @@ In dieser Demo kannst Du sehen, wie man mit dem Community-AddOn Loginbereiche er
 
 ![Screenshot](https://raw.githubusercontent.com/FriendsOfREDAXO/demo_community/assets/demo_community_01.jpg)
 
+> **Achtung:** Die Demo  muss grundlegend an die aktuelle YCom-Version angepasst werden und funktioniert deshalb derzeit noch nicht korrekt.
 
 Features
 --------
