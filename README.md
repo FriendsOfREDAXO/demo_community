@@ -43,8 +43,8 @@ Die Demo setzt folgende externe AddOns voraus (diese werden alle innerhalb von R
 - YRewrite
 - YCom
 
-Um sich in den Account der drei Demo-User einzuloggen, kann man folgende Daten nutzen:
-E-Mail: 	hans@trapper.de oder wanda@hendrix.de oder rasmus@bengtson.de. 
+Um sich in den Account der drei Demo-User einzuloggen, kann man folgende Daten nutzen:   
+E-Mail: 	hans@trapper.de oder wanda@hendrix.de oder rasmus@bengtson.de.   
 Passwort: Passwort
 
 
