@@ -8,7 +8,7 @@ if (rex_post('install', 'boolean')) {
 
     $errors = array();
 
-    // step 1/5: select missing packages we need to download
+    // step 1/6: select missing packages we need to download
     $missingPackages = array();
     $packages = array();
     if (isset($this->getProperty('setup')['packages'])) {
@@ -45,7 +45,7 @@ if (rex_post('install', 'boolean')) {
         }
     }
 
-    // step 2/5: download required packages
+    // step 2/6: download required packages
     if (count($missingPackages) > 0 && count($errors) == 0) {
         foreach ($missingPackages as $id => $fileId) {
 
@@ -79,7 +79,7 @@ if (rex_post('install', 'boolean')) {
         }
     }
 
-    // step 3/5: install and activate packages based on install sequence from config
+    // step 3/6: install and activate packages based on install sequence from config
     if (count($this->getProperty('setup')['installSequence']) > 0 && count($errors) == 0) {
         foreach ($this->getProperty('setup')['installSequence'] as $id) {
 
@@ -109,7 +109,7 @@ if (rex_post('install', 'boolean')) {
         }
     }
 
-    // step 4/5: import database
+    // step 4/6: import database
     if (count($this->getProperty('setup')['dbimport']) > 0 && count($errors) == 0) {
         foreach ($this->getProperty('setup')['dbimport'] as $import) {
             $file = rex_backup::getDir() . '/' . $import;
@@ -120,7 +120,7 @@ if (rex_post('install', 'boolean')) {
         }
     }
 
-    // step 5/5: import files
+    // step 5/6: import files
     if (count($this->getProperty('setup')['fileimport']) > 0 && count($errors) == 0) {
         foreach ($this->getProperty('setup')['fileimport'] as $import) {
             $file = rex_backup::getDir() . '/' . $import;
@@ -129,6 +129,11 @@ if (rex_post('install', 'boolean')) {
                 $errors[] = $this->i18n('package_failed_to_import', $import);
             }
         }
+    }
+
+    // step 6/6: make yrewrite copy its htaccess file
+    if (class_exists('rex_yrewrite')) {
+        rex_yrewrite::copyHtaccess();
     }
 
     // show result messages
