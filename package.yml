@@ -1,5 +1,5 @@
 package: demo_community
-version: '2.1.0'
+version: '3.0'
 author: Friends Of REDAXO
 supportpage: https://github.com/FriendsOfREDAXO/demo_community
 
@@ -19,6 +19,6 @@ requires:
         # install these addOns seamlessly for you once you’ve clicked the setup button.
         # After setup, both package files get merged. Be sure to not publish a merged `package.yml`
         # with your new release. Always use the original un-merged file!
-        backup: '>=2.0.3'
-        structure/content: '>=2.1.0'
-    redaxo: '>=5.2.0'
+        backup: '>=2.5.1'
+        structure/content: '>=2.9.0'
+    redaxo: '>=5.9.0'
