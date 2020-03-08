@@ -22,3 +22,6 @@ requires:
         backup: '>=2.5.1'
         structure/content: '>=2.9.0'
     redaxo: '>=5.9.0'
+
+console_commands:
+    'demo_community:install': rex_command_demo_community_install
