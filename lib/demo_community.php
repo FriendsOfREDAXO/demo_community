@@ -3,6 +3,9 @@
 class rex_demo_community {
     public static function install() {
         $addon = rex_addon::get('demo_community');
+        
+        // in some cases rex_addon has the old package.yml in cache. But we need our new merged package.yml
+        $addon->loadProperties();
 
         $errors = array();
 
