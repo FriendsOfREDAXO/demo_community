@@ -1,6 +1,13 @@
 # REDAXO Community Demo - Changelog
 
 
+## 3.1.1 – 18.03.2020
+
+### Bugfixes
+
+* Importdatei korrigiert
+
+
 ## 3.1.0 – 18.03.2020
 
 ### Features
