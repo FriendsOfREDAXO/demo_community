@@ -4,8 +4,8 @@ author: Friends Of REDAXO
 supportpage: https://github.com/FriendsOfREDAXO/demo_community
 
 page:
-    title: 'Community-Demo'
-    perm: demo_community[]
+    title: 'translate:demo_community_title'
+    perm: 'demo_community[]'
     pjax: true
     subpages:
         install: { title: 'translate:title' }
