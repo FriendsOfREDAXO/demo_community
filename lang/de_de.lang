@@ -1,9 +1,9 @@
 
-demo_community_title = Demo
+demo_community_title = Community-Demo
 
 demo_community_install = Installation
 demo_community_install_heading = Installation
-demo_community_install_description = Bitte beachten, dass bei der Installation alle Inhalte der Datenbank gelöscht werden!
+demo_community_install_description = Bitte beachten, dass bei der Installation alle Inhalte der Datenbank gelöscht werden!<br>Die Installation kann etwas dauern, da auch alle benötigten AddOns geladen werden.
 demo_community_install_button = Demo installieren
 
 demo_community_confirm_setup = Bestehende Daten gehen verloren. Fortfahren?

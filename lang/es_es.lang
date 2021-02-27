@@ -1,9 +1,9 @@
 
-demo_community_title = Demo
+demo_community_title =
 
 demo_community_install = Instalación
 demo_community_install_heading = Instalación
-demo_community_install_description = Tenga en cuenta que todos los contenidos de la base de datos se eliminan durante la instalación.
+demo_community_install_description = Tenga en cuenta que todos los contenidos de la base de datos se eliminarán durante la instalación.<br>La instalación puede llevar algo de tiempo porque también se cargan todos los complementos necesarios.
 demo_community_install_button = Instalar demo
 
 demo_community_confirm_setup = Los datos actuales serán eliminados. Continuar?

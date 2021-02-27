@@ -1,9 +1,9 @@
 
-demo_community_title = Demo
+demo_community_title =
 
 demo_community_install = Installation
 demo_community_install_heading = Installation
-demo_community_install_description = Observera att allt innehåll i databasen kommer att tas bort under installationen!
+demo_community_install_description = Observera att allt innehåll i databasen kommer att raderas under installationen! <br> Installationen kan ta lite tid eftersom alla nödvändiga tillägg också laddas.
 demo_community_install_button = Installera demo
 
 demo_community_confirm_setup = Befintlig data går förlorad. Fortsätt?
