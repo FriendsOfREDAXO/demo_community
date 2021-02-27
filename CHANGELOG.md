@@ -1,6 +1,16 @@
 # REDAXO Community Demo - Changelog
 
 
+## 3.2.0 – 27.02.2021
+
+### Features
+
+* Hinweis auf die Demo-Seite nach Installation des AddOns
+* Mehrsprachige Seitentitel
+* Verwendete AddOns aktualisiert
+* Datenbank-Importdatei nach Update der Y-AddOns aktualisiert
+
+
 ## 3.1.1 – 18.03.2020
 
 ### Bugfixes
