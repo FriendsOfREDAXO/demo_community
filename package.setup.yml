@@ -12,12 +12,12 @@ requires:
 # hint: inspect link values inside of REDAXO installer to find out fileIds (numbers) for new packages!
 setup:
     packages:
-        markitup: 3037    # 3.3.4
-        phpmailer: 2753   # 2.5.1
-        developer: 2654   # 3.8.0
-        yform: 2988       # 3.3.1
-        yrewrite: 2936    # 2.6
-        ycom: 3122        # 4.0.1
+        markitup: 3382    # 3.6.0
+        phpmailer: 3265   # 2.8.2
+        developer: 3278   # 3.9.0
+        yform: 3352       # 3.4.1
+        yrewrite: 3281    # 2.7
+        ycom: 3353        # 4.0.3
     installSequence:
         - backup
         - structure/content
