@@ -19,3 +19,5 @@ demo_community_package_failed_to_import   = Fehler beim Importieren von <b>"{0}"
 
 demo_community_installation_error         = Demo konnte nicht installiert werden:
 demo_community_installation_success       = Demo wurde erfolgreich installiert!
+
+demo_community_success_message            = Die Demo kann nun auf der Seite {0} installiert werden.

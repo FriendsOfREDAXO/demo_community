@@ -19,3 +19,5 @@ demo_community_package_failed_to_import   = Failed to import <b>"{0}"</b>!
 
 demo_community_installation_error         = Failed to install demo:
 demo_community_installation_success       = Successfully installed demo!
+
+demo_community_success_message            = The demo can now be installed on the page {0}.
