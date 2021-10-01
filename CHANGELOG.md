@@ -1,6 +1,14 @@
 # REDAXO Community Demo - Changelog
 
 
+## 3.3.0 – 01.10.2021
+
+### Features
+
+* Anpassung für den Dark Mode (REDAXO 5.13) 🦇
+* Verwendete AddOns aktualisiert
+
+
 ## 3.2.0 – 27.02.2021
 
 ### Features
