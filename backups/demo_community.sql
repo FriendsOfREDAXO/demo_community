@@ -6,42 +6,42 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS `rex_action`;
 CREATE TABLE `rex_action` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `preview` text,
   `presave` text,
   `postsave` text,
-  `previewmode` tinyint(4) DEFAULT NULL,
-  `presavemode` tinyint(4) DEFAULT NULL,
-  `postsavemode` tinyint(4) DEFAULT NULL,
+  `previewmode` tinyint DEFAULT NULL,
+  `presavemode` tinyint DEFAULT NULL,
+  `postsavemode` tinyint DEFAULT NULL,
   `createdate` datetime NOT NULL,
-  `revision` int(10) unsigned NOT NULL,
+  `revision` int unsigned NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 DROP TABLE IF EXISTS `rex_article`;
 CREATE TABLE `rex_article` (
-  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id` int(10) unsigned NOT NULL,
-  `parent_id` int(10) unsigned NOT NULL,
+  `pid` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL,
+  `parent_id` int unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `catname` varchar(255) NOT NULL,
-  `catpriority` int(10) unsigned NOT NULL,
+  `catpriority` int unsigned NOT NULL,
   `startarticle` tinyint(1) NOT NULL,
-  `priority` int(10) unsigned NOT NULL,
+  `priority` int unsigned NOT NULL,
   `path` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `template_id` int(10) unsigned NOT NULL,
-  `clang_id` int(10) unsigned NOT NULL,
+  `template_id` int unsigned NOT NULL,
+  `clang_id` int unsigned NOT NULL,
   `createdate` datetime NOT NULL,
-  `revision` int(10) unsigned NOT NULL,
+  `revision` int unsigned NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
-  `ycom_auth_type` int(11) NOT NULL,
-  `ycom_group_type` int(11) NOT NULL,
+  `ycom_auth_type` int NOT NULL,
+  `ycom_group_type` int NOT NULL,
   `ycom_groups` text NOT NULL,
   `art_subtitle` text,
   `art_title` text,
@@ -62,7 +62,7 @@ CREATE TABLE `rex_article` (
   KEY `id` (`id`),
   KEY `clang_id` (`clang_id`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_article` WRITE;
 /*!40000 ALTER TABLE `rex_article` DISABLE KEYS */;
@@ -93,13 +93,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_article_slice`;
 CREATE TABLE `rex_article_slice` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `article_id` int(10) unsigned NOT NULL,
-  `clang_id` int(10) unsigned NOT NULL,
-  `ctype_id` int(10) unsigned NOT NULL,
-  `module_id` int(10) unsigned NOT NULL,
-  `revision` int(11) NOT NULL,
-  `priority` int(10) unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `article_id` int unsigned NOT NULL,
+  `clang_id` int unsigned NOT NULL,
+  `ctype_id` int unsigned NOT NULL,
+  `module_id` int unsigned NOT NULL,
+  `revision` int NOT NULL,
+  `priority` int unsigned NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `value1` mediumtext,
   `value2` mediumtext,
@@ -170,7 +170,7 @@ CREATE TABLE `rex_article_slice` (
   KEY `clang_id` (`clang_id`),
   KEY `article_id` (`article_id`),
   KEY `find_slices` (`clang_id`,`article_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_article_slice` WRITE;
 /*!40000 ALTER TABLE `rex_article_slice` DISABLE KEYS */;
@@ -252,14 +252,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_clang`;
 CREATE TABLE `rex_clang` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `priority` int(10) unsigned NOT NULL,
+  `priority` int unsigned NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `revision` int(10) unsigned NOT NULL,
+  `revision` int unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_clang` WRITE;
 /*!40000 ALTER TABLE `rex_clang` DISABLE KEYS */;
@@ -274,19 +274,19 @@ CREATE TABLE `rex_config` (
   `key` varchar(255) NOT NULL,
   `value` text NOT NULL,
   PRIMARY KEY (`namespace`,`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_config` WRITE;
 /*!40000 ALTER TABLE `rex_config` DISABLE KEYS */;
 INSERT INTO `rex_config` VALUES 
-  ('core','package-config','{\"backup\":{\"install\":true,\"status\":true},\"be_style\":{\"install\":true,\"status\":true,\"plugins\":{\"customizer\":{\"install\":false,\"status\":false},\"redaxo\":{\"install\":true,\"status\":true}}},\"cronjob\":{\"install\":false,\"status\":false,\"plugins\":{\"article_status\":{\"install\":false,\"status\":false},\"optimize_tables\":{\"install\":false,\"status\":false}}},\"debug\":{\"install\":false,\"status\":false},\"demo_community\":{\"install\":false,\"status\":false},\"developer\":{\"install\":true,\"status\":true},\"install\":{\"install\":true,\"status\":true},\"markitup\":{\"install\":true,\"status\":true,\"plugins\":{\"documentation\":{\"install\":false,\"status\":false}}},\"media_manager\":{\"install\":true,\"status\":true},\"mediapool\":{\"install\":true,\"status\":true},\"metainfo\":{\"install\":true,\"status\":true},\"phpmailer\":{\"install\":true,\"status\":true},\"project\":{\"install\":true,\"status\":true},\"structure\":{\"install\":true,\"status\":true,\"plugins\":{\"content\":{\"install\":true,\"status\":true},\"history\":{\"install\":false,\"status\":false},\"version\":{\"install\":false,\"status\":false}}},\"users\":{\"install\":true,\"status\":true},\"ycom\":{\"install\":true,\"status\":true,\"plugins\":{\"auth\":{\"install\":true,\"status\":true},\"docs\":{\"install\":true,\"status\":true},\"group\":{\"install\":true,\"status\":true},\"media_auth\":{\"install\":false,\"status\":false}}},\"yform\":{\"install\":true,\"status\":true,\"plugins\":{\"email\":{\"install\":true,\"status\":true},\"manager\":{\"install\":true,\"status\":true},\"rest\":{\"install\":false,\"status\":false},\"tools\":{\"install\":false,\"status\":false}}},\"yrewrite\":{\"install\":true,\"status\":true}}'),
-  ('core','package-order','[\"be_style\",\"be_style\\/redaxo\",\"users\",\"backup\",\"developer\",\"install\",\"markitup\",\"media_manager\",\"mediapool\",\"phpmailer\",\"structure\",\"metainfo\",\"structure\\/content\",\"yform\",\"yform\\/email\",\"yform\\/manager\",\"yrewrite\",\"ycom\",\"ycom\\/auth\",\"ycom\\/docs\",\"ycom\\/group\",\"project\"]'),
+  ('core','package-config','{\"backup\":{\"install\":true,\"status\":true},\"be_style\":{\"install\":true,\"status\":true,\"plugins\":{\"customizer\":{\"install\":false,\"status\":false},\"redaxo\":{\"install\":true,\"status\":true}}},\"cronjob\":{\"install\":false,\"status\":false,\"plugins\":{\"article_status\":{\"install\":false,\"status\":false},\"optimize_tables\":{\"install\":false,\"status\":false}}},\"debug\":{\"install\":false,\"status\":false},\"demo_community\":{\"install\":true,\"status\":true},\"developer\":{\"install\":true,\"status\":true},\"install\":{\"install\":true,\"status\":true},\"markitup\":{\"install\":true,\"status\":true,\"plugins\":{\"documentation\":{\"install\":false,\"status\":false}}},\"media_manager\":{\"install\":true,\"status\":true},\"mediapool\":{\"install\":true,\"status\":true},\"metainfo\":{\"install\":true,\"status\":true},\"phpmailer\":{\"install\":true,\"status\":true},\"project\":{\"install\":true,\"status\":true},\"structure\":{\"install\":true,\"status\":true,\"plugins\":{\"content\":{\"install\":true,\"status\":true},\"history\":{\"install\":false,\"status\":false},\"version\":{\"install\":false,\"status\":false}}},\"users\":{\"install\":true,\"status\":true},\"ycom\":{\"install\":true,\"status\":true,\"plugins\":{\"auth\":{\"install\":true,\"status\":true},\"docs\":{\"install\":true,\"status\":true},\"group\":{\"install\":true,\"status\":true},\"media_auth\":{\"install\":false,\"status\":false}}},\"yform\":{\"install\":true,\"status\":true,\"plugins\":{\"email\":{\"install\":true,\"status\":true},\"manager\":{\"install\":true,\"status\":true},\"rest\":{\"install\":false,\"status\":false},\"tools\":{\"install\":false,\"status\":false}}},\"yrewrite\":{\"install\":true,\"status\":true}}'),
+  ('core','package-order','[\"be_style\",\"be_style\\/redaxo\",\"users\",\"backup\",\"developer\",\"install\",\"markitup\",\"media_manager\",\"mediapool\",\"phpmailer\",\"structure\",\"metainfo\",\"structure\\/content\",\"yform\",\"yform\\/email\",\"yform\\/manager\",\"yrewrite\",\"ycom\",\"demo_community\",\"ycom\\/auth\",\"ycom\\/docs\",\"ycom\\/group\",\"project\"]'),
   ('core','utf8mb4','false'),
   ('core','version','\"5.10.0\"'),
   ('developer','actions','true'),
   ('developer','delete','true'),
   ('developer','dir_suffix','true'),
-  ('developer','items','{\"templates\":{\"1\":1582302840,\"2\":1582376110,\"3\":1582321383,\"4\":1582321346,\"5\":1582322175,\"6\":1582303346,\"7\":1,\"8\":1582400011,\"9\":1582376969,\"10\":1},\"modules\":{\"1\":1582303508,\"2\":1,\"3\":1,\"4\":1,\"5\":1,\"6\":1,\"7\":1,\"8\":1,\"9\":1582311637,\"10\":1,\"11\":1,\"12\":1}}'),
+  ('developer','items','{\"templates\":{\"1\":1582306440,\"2\":1582379710,\"3\":1582324983,\"4\":1582324946,\"5\":1582325775,\"6\":1582306946,\"7\":1,\"8\":1582403611,\"9\":1582380569,\"10\":1},\"modules\":{\"1\":1582307108,\"2\":1,\"3\":1,\"4\":1,\"5\":1,\"6\":1,\"7\":1,\"8\":1,\"9\":1582315237,\"10\":1,\"11\":1,\"12\":1}}'),
   ('developer','modules','true'),
   ('developer','prefix','false'),
   ('developer','rename','true'),
@@ -302,6 +302,7 @@ INSERT INTO `rex_config` VALUES
   ('phpmailer','bcc','\"\"'),
   ('phpmailer','charset','\"utf-8\"'),
   ('phpmailer','confirmto','\"\"'),
+  ('phpmailer','detour_mode','false'),
   ('phpmailer','encoding','\"8bit\"'),
   ('phpmailer','errormail','0'),
   ('phpmailer','from','\"noreplay@redaxo.org\"'),
@@ -335,6 +336,7 @@ INSERT INTO `rex_config` VALUES
   ('ycom/auth','article_id_logout','14'),
   ('ycom/auth','article_id_password','17'),
   ('ycom/auth','article_id_register','15'),
+  ('ycom/auth','auth_cookie_ttl','\"14\"'),
   ('ycom/auth','auth_rule','\"login_try_5_pause\"'),
   ('ycom/auth','login_field','\"email\"'),
   ('yrewrite','unicode_urls','false'),
@@ -344,16 +346,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_markitup_profiles`;
 CREATE TABLE `rex_markitup_profiles` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `description` varchar(255) NOT NULL,
   `urltype` varchar(50) NOT NULL,
-  `minheight` smallint(5) unsigned NOT NULL,
-  `maxheight` smallint(5) unsigned NOT NULL,
+  `minheight` smallint unsigned NOT NULL,
+  `maxheight` smallint unsigned NOT NULL,
   `type` varchar(50) NOT NULL,
   `markitup_buttons` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_markitup_profiles` WRITE;
 /*!40000 ALTER TABLE `rex_markitup_profiles` DISABLE KEYS */;
@@ -365,27 +367,27 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_markitup_snippets`;
 CREATE TABLE `rex_markitup_snippets` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `lang` varchar(30) NOT NULL,
   `description` text NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 DROP TABLE IF EXISTS `rex_media`;
 CREATE TABLE `rex_media` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `category_id` int(10) unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` int unsigned NOT NULL,
   `attributes` text,
   `filetype` varchar(255) DEFAULT NULL,
   `filename` varchar(255) DEFAULT NULL,
   `originalname` varchar(255) DEFAULT NULL,
   `filesize` varchar(255) DEFAULT NULL,
-  `width` int(10) unsigned DEFAULT NULL,
-  `height` int(10) unsigned DEFAULT NULL,
+  `width` int unsigned DEFAULT NULL,
+  `height` int unsigned DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `createdate` datetime NOT NULL,
-  `revision` int(10) unsigned NOT NULL,
+  `revision` int unsigned NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
@@ -393,7 +395,7 @@ CREATE TABLE `rex_media` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `filename` (`filename`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_media` WRITE;
 /*!40000 ALTER TABLE `rex_media` DISABLE KEYS */;
@@ -433,19 +435,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_media_category`;
 CREATE TABLE `rex_media_category` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `parent_id` int(10) unsigned NOT NULL,
+  `parent_id` int unsigned NOT NULL,
   `path` varchar(255) NOT NULL,
   `createdate` datetime NOT NULL,
   `attributes` text,
-  `revision` int(10) unsigned NOT NULL,
+  `revision` int unsigned NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_media_category` WRITE;
 /*!40000 ALTER TABLE `rex_media_category` DISABLE KEYS */;
@@ -458,8 +460,8 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_media_manager_type`;
 CREATE TABLE `rex_media_manager_type` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `status` int(10) unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `status` int unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `createdate` datetime NOT NULL,
@@ -468,7 +470,7 @@ CREATE TABLE `rex_media_manager_type` (
   `updateuser` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_media_manager_type` WRITE;
 /*!40000 ALTER TABLE `rex_media_manager_type` DISABLE KEYS */;
@@ -489,17 +491,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_media_manager_type_effect`;
 CREATE TABLE `rex_media_manager_type_effect` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `type_id` int(10) unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `type_id` int unsigned NOT NULL,
   `effect` varchar(255) NOT NULL,
   `parameters` text NOT NULL,
-  `priority` int(10) unsigned NOT NULL,
+  `priority` int unsigned NOT NULL,
   `createdate` datetime NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_media_manager_type_effect` WRITE;
 /*!40000 ALTER TABLE `rex_media_manager_type_effect` DISABLE KEYS */;
@@ -531,12 +533,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_metainfo_field`;
 CREATE TABLE `rex_metainfo_field` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `priority` int(10) unsigned NOT NULL,
+  `priority` int unsigned NOT NULL,
   `attributes` text NOT NULL,
-  `type_id` int(10) unsigned DEFAULT NULL,
+  `type_id` int unsigned DEFAULT NULL,
   `default` varchar(255) NOT NULL,
   `params` text,
   `validate` text,
@@ -549,7 +551,7 @@ CREATE TABLE `rex_metainfo_field` (
   `updateuser` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_metainfo_field` WRITE;
 /*!40000 ALTER TABLE `rex_metainfo_field` DISABLE KEYS */;
@@ -565,12 +567,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_metainfo_type`;
 CREATE TABLE `rex_metainfo_type` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `label` varchar(255) DEFAULT NULL,
   `dbtype` varchar(255) NOT NULL,
-  `dblength` int(11) NOT NULL,
+  `dblength` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_metainfo_type` WRITE;
 /*!40000 ALTER TABLE `rex_metainfo_type` DISABLE KEYS */;
@@ -593,7 +595,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_module`;
 CREATE TABLE `rex_module` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(191) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `output` mediumtext NOT NULL,
@@ -603,10 +605,10 @@ CREATE TABLE `rex_module` (
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
   `attributes` text,
-  `revision` int(10) unsigned NOT NULL,
+  `revision` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_module` WRITE;
 /*!40000 ALTER TABLE `rex_module` DISABLE KEYS */;
@@ -628,28 +630,28 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_module_action`;
 CREATE TABLE `rex_module_action` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `module_id` int(10) unsigned NOT NULL,
-  `action_id` int(10) unsigned NOT NULL,
-  `revision` int(10) unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `module_id` int unsigned NOT NULL,
+  `action_id` int unsigned NOT NULL,
+  `revision` int unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 DROP TABLE IF EXISTS `rex_template`;
 CREATE TABLE `rex_template` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(191) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `content` mediumtext,
   `active` tinyint(1) DEFAULT NULL,
   `createdate` datetime NOT NULL,
   `attributes` text,
-  `revision` int(11) NOT NULL,
+  `revision` int NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_template` WRITE;
 /*!40000 ALTER TABLE `rex_template` DISABLE KEYS */;
@@ -669,22 +671,22 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_user_role`;
 CREATE TABLE `rex_user_role` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `description` text,
   `perms` text NOT NULL,
   `createdate` datetime NOT NULL,
-  `revision` int(10) unsigned NOT NULL,
+  `revision` int unsigned NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 DROP TABLE IF EXISTS `rex_ycom_group`;
 CREATE TABLE `rex_ycom_group` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prio` int(11) NOT NULL,
+  `prio` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -698,25 +700,25 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_ycom_user`;
 CREATE TABLE `rex_ycom_user` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `login` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `firstname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `activation_key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `session_key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activation_key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `session_key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `termsofuse_accepted` tinyint(1) NOT NULL,
   `new_password_required` tinyint(1) NOT NULL,
   `last_action_time` datetime NOT NULL,
   `last_login_time` datetime NOT NULL,
   `termination_time` datetime NOT NULL,
-  `login_tries` int(11) DEFAULT NULL,
-  `ycom_groups` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pic` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slogan` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `motto` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `login_tries` int DEFAULT NULL,
+  `ycom_groups` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pic` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slogan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `motto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -731,16 +733,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_yform_email_template`;
 CREATE TABLE `rex_yform_email_template` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mail_from` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mail_from_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mail_reply_to` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mail_reply_to_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `subject` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `body_html` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attachments` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body_html` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attachments` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `updatedate` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -755,72 +757,72 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_yform_field`;
 CREATE TABLE `rex_yform_field` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `table_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prio` int(11) NOT NULL,
-  `type_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `db_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `table_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prio` int NOT NULL,
+  `type_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `db_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `list_hidden` tinyint(1) NOT NULL,
   `search` tinyint(1) NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `not_required` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `options` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `multiple` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `default` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `size` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `only_empty` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `table` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `hashname` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password_hash` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `no_db` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password_label` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `field` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `empty_value` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `empty_option` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `max_size` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `types` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fields` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `position` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `width` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `height` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `show_value` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `html` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notice` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `regex` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pattern` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `format` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `current_date` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `widget` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attributes` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `query` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `year_start` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `year_end` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `values` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rules` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nonce_key` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nonce_referer` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sizes` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `messages` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rules_message` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `script` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `max` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `infotext_1` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `infotext_2` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `choices` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expanded` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `scope` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `columns` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `googleapikey` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `unit` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `precision` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `scale` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `preview` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `label` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `not_required` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `multiple` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `default` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `size` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `only_empty` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hashname` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_hash` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_db` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_label` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `field` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `empty_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `empty_option` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `max_size` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `types` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fields` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `width` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `height` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `show_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `html` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notice` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `regex` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pattern` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `format` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `current_date` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `widget` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attributes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `query` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `year_start` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `year_end` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `values` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rules` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nonce_key` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nonce_referer` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sizes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `messages` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rules_message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `script` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `max` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `infotext_1` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `infotext_2` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `choices` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expanded` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scope` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `columns` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `googleapikey` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unit` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `precision` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scale` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `preview` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -860,33 +862,33 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_yform_history`;
 CREATE TABLE `rex_yform_history` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `table_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dataset_id` int(11) NOT NULL,
-  `action` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `table_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dataset_id` int NOT NULL,
+  `action` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `timestamp` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `dataset` (`table_name`,`dataset_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 DROP TABLE IF EXISTS `rex_yform_history_field`;
 CREATE TABLE `rex_yform_history_field` (
-  `history_id` int(11) NOT NULL,
-  `field` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `history_id` int NOT NULL,
+  `field` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`history_id`,`field`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 DROP TABLE IF EXISTS `rex_yform_table`;
 CREATE TABLE `rex_yform_table` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL,
-  `table_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `list_amount` int(11) NOT NULL DEFAULT '50',
-  `list_sortfield` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'id',
-  `list_sortorder` enum('ASC','DESC') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ASC',
-  `prio` int(11) NOT NULL,
+  `table_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `list_amount` int NOT NULL DEFAULT '50',
+  `list_sortfield` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'id',
+  `list_sortorder` enum('ASC','DESC') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ASC',
+  `prio` int NOT NULL,
   `search` tinyint(1) NOT NULL,
   `hidden` tinyint(1) NOT NULL,
   `export` tinyint(1) NOT NULL,
@@ -909,42 +911,42 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_yrewrite_alias`;
 CREATE TABLE `rex_yrewrite_alias` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `alias_domain` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `domain_id` int(11) NOT NULL,
-  `clang_start` int(11) NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `alias_domain` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `domain_id` int NOT NULL,
+  `clang_start` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 DROP TABLE IF EXISTS `rex_yrewrite_domain`;
 CREATE TABLE `rex_yrewrite_domain` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `domain` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mount_id` int(11) NOT NULL,
-  `start_id` int(11) NOT NULL,
-  `notfound_id` int(11) NOT NULL,
-  `clangs` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `clang_start` int(11) NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `domain` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mount_id` int NOT NULL,
+  `start_id` int NOT NULL,
+  `notfound_id` int NOT NULL,
+  `clangs` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `clang_start` int NOT NULL,
   `clang_start_auto` tinyint(1) NOT NULL,
   `clang_start_hidden` tinyint(1) NOT NULL,
-  `robots` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title_scheme` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `robots` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title_scheme` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `auto_redirect` tinyint(1) NOT NULL,
-  `auto_redirect_days` int(3) NOT NULL,
+  `auto_redirect_days` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 DROP TABLE IF EXISTS `rex_yrewrite_forward`;
 CREATE TABLE `rex_yrewrite_forward` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `domain_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
-  `url` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `article_id` int(11) NOT NULL,
-  `clang` int(11) NOT NULL,
-  `extern` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `media` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `movetype` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `domain_id` int NOT NULL,
+  `status` int NOT NULL,
+  `url` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `article_id` int NOT NULL,
+  `clang` int NOT NULL,
+  `extern` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `media` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `movetype` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiry_date` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
