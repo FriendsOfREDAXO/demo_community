@@ -1,6 +1,13 @@
 # REDAXO Community Demo - Changelog
 
 
+## 3.3.1 – 06.10.2021
+
+### Bugfixes
+
+* Fehler bei der Installation behoben, wenn zuvor das Developer-AddOn aktiviert war
+
+
 ## 3.3.0 – 01.10.2021
 
 ### Features
