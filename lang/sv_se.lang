@@ -1,5 +1,5 @@
 
-demo_community_title =
+demo_community_title = Community-demo
 
 demo_community_install = Installation
 demo_community_install_heading = Installation
@@ -20,4 +20,4 @@ demo_community_package_failed_to_import   = Import av <b> "{0}" </ b> misslyckad
 demo_community_installation_error         = Demo kunde inte installeras:
 demo_community_installation_success       = Demo installerades med framgång!
 
-demo_community_success_message            =
+demo_community_success_message            = Demon kan installeras på sidan {0}.
