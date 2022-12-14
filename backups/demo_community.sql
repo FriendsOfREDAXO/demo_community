@@ -350,8 +350,8 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `rex_markitup_profiles`;
 CREATE TABLE `rex_markitup_profiles` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `name` varchar(30) NOT NULL DEFAULT '',
+  `description` varchar(255) NOT NULL DEFAULT '',
   `urltype` varchar(50) NOT NULL,
   `minheight` smallint unsigned NOT NULL,
   `maxheight` smallint unsigned NOT NULL,
@@ -371,8 +371,8 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `rex_markitup_snippets`;
 CREATE TABLE `rex_markitup_snippets` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `lang` varchar(30) NOT NULL,
+  `name` varchar(30) NOT NULL DEFAULT '',
+  `lang` varchar(30) NOT NULL DEFAULT '',
   `description` text NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`id`)
