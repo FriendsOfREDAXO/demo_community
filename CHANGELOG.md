@@ -1,6 +1,14 @@
 # REDAXO Community Demo - Changelog
 
 
+## 4.0.0 – 14.12.2022
+
+### Neu
+
+* Demo auf aktuelles YForm 4 migriert (enthält Breaking Changes)
+* Verwendete AddOns aktualisiert, Kompatibilität mit neuem PHP 8.2 hergestellt
+
+
 ## 3.3.1 – 06.10.2021
 
 ### Bugfixes
