@@ -53,9 +53,10 @@ CREATE TABLE `rex_article` (
   `yrewrite_redirection` varchar(191) NOT NULL,
   `yrewrite_title` varchar(191) NOT NULL,
   `yrewrite_description` text NOT NULL,
-  `yrewrite_changefreq` varchar(10) NOT NULL,
-  `yrewrite_priority` varchar(5) NOT NULL,
-  `yrewrite_index` tinyint(1) NOT NULL,
+  `yrewrite_image` varchar(191) NOT NULL,
+  `yrewrite_changefreq` varchar(10) DEFAULT NULL,
+  `yrewrite_priority` varchar(5) DEFAULT NULL,
+  `yrewrite_index` tinyint(1) DEFAULT NULL,
   `yrewrite_canonical_url` text NOT NULL,
   `art_keywords` text,
   `art_description` text,
@@ -487,7 +488,8 @@ INSERT INTO `rex_media_manager_type` VALUES
   (8,0,'profile','40 * 40','2020-02-22 11:41:21','admin','2020-02-22 11:42:02','admin'),
   (9,0,'header','1050 * 855','2020-02-22 11:42:21','admin','2020-02-22 11:43:19','admin'),
   (10,0,'blur','750 * 428','2020-02-22 11:43:48','admin','2020-02-22 11:45:05','admin'),
-  (11,0,'big','max. 1000 * 800','2020-02-22 11:45:35','admin','2020-02-22 11:45:53','admin');
+  (11,0,'big','max. 1000 * 800','2020-02-22 11:45:35','admin','2020-02-22 11:45:53','admin'),
+  (12,0,'yrewrite_seo_image','YRewrite SEO Vorschaubild für Sitemap und Open Graph Tags','0000-00-00 00:00:00','','0000-00-00 00:00:00','');
 /*!40000 ALTER TABLE `rex_media_manager_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -919,7 +921,8 @@ CREATE TABLE `rex_yrewrite_alias` (
   `alias_domain` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `domain_id` int NOT NULL,
   `clang_start` int NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `alias_domain` (`alias_domain`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 DROP TABLE IF EXISTS `rex_yrewrite_domain`;
 CREATE TABLE `rex_yrewrite_domain` (
@@ -937,21 +940,22 @@ CREATE TABLE `rex_yrewrite_domain` (
   `description` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `auto_redirect` tinyint(1) NOT NULL,
   `auto_redirect_days` int NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `domain` (`domain`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 DROP TABLE IF EXISTS `rex_yrewrite_forward`;
 CREATE TABLE `rex_yrewrite_forward` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `domain_id` int NOT NULL,
   `status` int NOT NULL,
-  `url` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `article_id` int NOT NULL,
   `clang` int NOT NULL,
-  `extern` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `extern` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL,
   `media` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `movetype` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expiry_date` date NOT NULL,
+  `expiry_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 SET FOREIGN_KEY_CHECKS = 1;
