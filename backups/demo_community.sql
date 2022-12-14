@@ -57,6 +57,8 @@ CREATE TABLE `rex_article` (
   `yrewrite_priority` varchar(5) NOT NULL,
   `yrewrite_index` tinyint(1) NOT NULL,
   `yrewrite_canonical_url` text NOT NULL,
+  `art_keywords` text,
+  `art_description` text,
   PRIMARY KEY (`pid`),
   UNIQUE KEY `find_articles` (`id`,`clang_id`),
   KEY `id` (`id`),
@@ -561,7 +563,9 @@ INSERT INTO `rex_metainfo_field` VALUES
   (3,'Individueller Title-Tag','art_title',2,'',1,'','',NULL,'',NULL,NULL,'2020-02-21 22:28:15','admin','2020-02-21 22:28:15','admin'),
   (4,'Headerbild','art_file',3,'',6,'','',NULL,'',NULL,NULL,'2020-02-21 22:29:02','admin','2020-02-21 22:29:02','admin'),
   (5,'Für die zweite Menü-Ebene stehen folgende Icons stehen zur Verfügung: https://themify.me/themify-icons','art_legend_icon',4,'',12,'','',NULL,'',NULL,NULL,'2020-02-21 22:29:34','admin','2020-02-22 16:45:28','admin'),
-  (6,'Navi-Icon, EIngabe z.B. ti-star','art_nav_icon',5,'',1,'','',NULL,'',NULL,NULL,'2020-02-21 22:29:58','admin','2020-02-21 22:29:58','admin');
+  (6,'Navi-Icon, EIngabe z.B. ti-star','art_nav_icon',5,'',1,'','',NULL,'',NULL,NULL,'2020-02-21 22:29:58','admin','2020-02-21 22:29:58','admin'),
+  (7,'Schlagworte','art_keywords',6,'',1,'','',NULL,'',NULL,NULL,'2022-12-14 10:29:55','admin','2022-12-14 10:30:38','admin'),
+  (8,'Beschreibung','art_description',7,'',1,'','',NULL,'',NULL,NULL,'2022-12-14 10:30:59','admin','2022-12-14 10:30:59','admin');
 /*!40000 ALTER TABLE `rex_metainfo_field` ENABLE KEYS */;
 UNLOCK TABLES;
 
