@@ -15,10 +15,10 @@ CREATE TABLE `rex_action` (
   `presavemode` tinyint DEFAULT NULL,
   `postsavemode` tinyint DEFAULT NULL,
   `createdate` datetime NOT NULL,
-  `revision` int unsigned NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
+  `revision` int unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 DROP TABLE IF EXISTS `rex_article`;
@@ -36,10 +36,10 @@ CREATE TABLE `rex_article` (
   `template_id` int unsigned NOT NULL,
   `clang_id` int unsigned NOT NULL,
   `createdate` datetime NOT NULL,
-  `revision` int unsigned NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
+  `revision` int unsigned NOT NULL,
   `ycom_auth_type` int NOT NULL,
   `ycom_group_type` int NOT NULL,
   `ycom_groups` text NOT NULL,
@@ -571,7 +571,7 @@ CREATE TABLE `rex_metainfo_field` (
   `updateuser` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
 LOCK TABLES `rex_metainfo_field` WRITE;
 /*!40000 ALTER TABLE `rex_metainfo_field` DISABLE KEYS */;
@@ -707,7 +707,7 @@ CREATE TABLE `rex_user_role` (
 DROP TABLE IF EXISTS `rex_ycom_group`;
 CREATE TABLE `rex_ycom_group` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `prio` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
