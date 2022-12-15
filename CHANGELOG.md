@@ -1,6 +1,14 @@
 # REDAXO Community Demo - Changelog
 
 
+## 4.0.1 – 15.12.2022
+
+### Bugfixes
+
+* Login für Demo-User zurückgesetzt auf frühere Version (E-Mails, Passwort)
+* Infos in der README aktualisiert
+
+
 ## 4.0.0 – 14.12.2022
 
 ### Neu
