@@ -1,12 +1,11 @@
-Demo-Community für REDAXO 5
-===========================
+# Community-Demo für REDAXO 5
 
-In dieser Demo kannst Du sehen, wie man mit dem Community-AddOn Loginbereiche erstellen kann, wo sich User registrieren und in geschützte Bereiche einloggen können.
+In dieser Demo kannst Du sehen, wie man mit dem Community-AddOn (YCom) Loginbereiche erstellen kann, wo sich User registrieren und in geschützte Bereiche einloggen können.
 
 ![Screenshot](https://raw.githubusercontent.com/FriendsOfREDAXO/demo_community/assets/demo_community_01.jpg)
 
-Features
---------
+
+## Features
 
 **Folgende Funktionen sind in der Demo enthalten:**
 
@@ -23,31 +22,17 @@ Features
 - Jeder User kann seine Profildaten verändern
 - einfache Beispiele für die Anzeige der neuesten User
 
-
 ![Screenshot](https://raw.githubusercontent.com/FriendsOfREDAXO/demo_community/assets/demo_community_03.png)
 
 
-Installation
-------------
-
-1. Das AddOn-Verzeichnis muss den Namen demo_community haben; nach dem Auspacken in das AddOn-Verzeichnis kopieren: `redaxo/src/addons`
-2. Das AddOn installieren und dem Link zum Backup-AddOn folgen
-3. Datenbank und komprimierte Datei importieren
-
-Die Demo setzt folgende externe AddOns voraus (diese werden alle innerhalb von REDAXO über den Installer automatisch):
-
-- Markitup
-- PHP-Mailer
-- Developer
-- YForm
-- YRewrite
-- YCom
+## Login als Demo-User
 
 Um sich in den Account der drei Demo-User einzuloggen, kann man folgende Daten nutzen:   
-E-Mail: 	hans@trapper.de oder wanda@hendrix.de oder rasmus@bengtson.de.   
-Passwort: Passwort
 
+- `hans@trapper.de`
+- `wanda@hendrix.de`
+- `rasmus@bengtson.de`
+
+Das Passwort für alle ist: `Passwort`
 
 ![Screenshot](https://raw.githubusercontent.com/FriendsOfREDAXO/demo_community/assets/demo_community_02.jpg)
-
-
