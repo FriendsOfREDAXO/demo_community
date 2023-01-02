@@ -1,6 +1,13 @@
 # REDAXO Community Demo - Changelog
 
 
+## 4.0.2 – 02.01.2023
+
+### Bugfixes
+
+* Verwendete AddOns aktualisiert
+
+
 ## 4.0.1 – 15.12.2022
 
 ### Bugfixes
