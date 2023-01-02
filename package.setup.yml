@@ -13,7 +13,7 @@ requires:
 # hint: inspect link values inside of REDAXO installer to find out fileIds (numbers) for new packages!
 setup:
     packages:
-        developer: 4538              # 3.9.1
+        developer: 4706              # 3.9.2
         markitup: 4525               # 3.7.3
         phpmailer: 3692              # 2.10.2
         ycom: 4549                   # 4.0.11
