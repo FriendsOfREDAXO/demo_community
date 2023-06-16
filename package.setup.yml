@@ -14,12 +14,13 @@ requires:
 setup:
     packages:
         developer: 4706              # 3.9.2
-        markitup: 4525               # 3.7.3
+        markitup: 4864               # 3.7.4
         phpmailer: 3692              # 2.10.2
-        ycom: 4549                   # 4.0.11
+        ycom: 4979                   # 4.2.0
         yform_spam_protection: 4666  # 1.2.3
-        yform: 4547                  # 4.0.4
-        yrewrite: 4460               # 2.9.1
+        yform_mediafile: 4005        # 1.0.1
+        yform: 4941                  # 4.1.1
+        yrewrite: 4933               # 2.10.0
     installSequence:
         - backup
         - structure/content
@@ -28,6 +29,7 @@ setup:
         - markitup
         - yform
         - yform_spam_protection
+        - yform_mediafile
         - yrewrite
         - ycom
     dbimport:
