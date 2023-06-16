@@ -4,50 +4,33 @@
 
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP TABLE IF EXISTS `rex_action`;
-CREATE TABLE `rex_action` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `preview` text,
-  `presave` text,
-  `postsave` text,
-  `previewmode` tinyint DEFAULT NULL,
-  `presavemode` tinyint DEFAULT NULL,
-  `postsavemode` tinyint DEFAULT NULL,
-  `createdate` datetime NOT NULL,
-  `createuser` varchar(255) NOT NULL,
-  `updatedate` datetime NOT NULL,
-  `updateuser` varchar(255) NOT NULL,
-  `revision` int unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 DROP TABLE IF EXISTS `rex_article`;
 CREATE TABLE `rex_article` (
-  `pid` int unsigned NOT NULL AUTO_INCREMENT,
-  `id` int unsigned NOT NULL,
-  `parent_id` int unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
+  `parent_id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `catname` varchar(255) NOT NULL,
-  `catpriority` int unsigned NOT NULL,
+  `catpriority` int(10) unsigned NOT NULL,
   `startarticle` tinyint(1) NOT NULL,
-  `priority` int unsigned NOT NULL,
+  `priority` int(10) unsigned NOT NULL,
   `path` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `template_id` int unsigned NOT NULL,
-  `clang_id` int unsigned NOT NULL,
+  `template_id` int(10) unsigned NOT NULL,
+  `clang_id` int(10) unsigned NOT NULL,
   `createdate` datetime NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
-  `revision` int unsigned NOT NULL,
-  `ycom_auth_type` int NOT NULL,
-  `ycom_group_type` int NOT NULL,
+  `revision` int(10) unsigned NOT NULL,
+  `ycom_auth_type` int(11) NOT NULL DEFAULT 0,
+  `ycom_group_type` int(11) NOT NULL DEFAULT 0,
   `ycom_groups` text NOT NULL,
-  `art_subtitle` text,
-  `art_title` text,
+  `art_subtitle` text DEFAULT NULL,
+  `art_title` text DEFAULT NULL,
   `art_file` varchar(255) DEFAULT '',
-  `art_legend_icon` text,
-  `art_nav_icon` text,
+  `art_legend_icon` text DEFAULT NULL,
+  `art_nav_icon` text DEFAULT NULL,
   `yrewrite_url_type` enum('AUTO','CUSTOM','REDIRECTION_INTERNAL','REDIRECTION_EXTERNAL') NOT NULL DEFAULT 'AUTO',
   `yrewrite_url` text NOT NULL,
   `yrewrite_redirection` varchar(191) NOT NULL,
@@ -58,30 +41,30 @@ CREATE TABLE `rex_article` (
   `yrewrite_priority` varchar(5) DEFAULT NULL,
   `yrewrite_index` tinyint(1) DEFAULT NULL,
   `yrewrite_canonical_url` text NOT NULL,
-  `art_keywords` text,
-  `art_description` text,
+  `art_keywords` text DEFAULT NULL,
+  `art_description` text DEFAULT NULL,
   PRIMARY KEY (`pid`),
   UNIQUE KEY `find_articles` (`id`,`clang_id`),
   KEY `id` (`id`),
   KEY `clang_id` (`clang_id`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_article` WRITE;
 /*!40000 ALTER TABLE `rex_article` DISABLE KEYS */;
 INSERT INTO `rex_article` VALUES 
-  (1,1,0,'REDAXO','Home',1,1,1,'|',1,1,1,'2020-02-21 22:30:25','admin','2020-02-22 17:17:29','admin',0,0,0,'','Community-Demo','REDAXO Community-Demo','steg.jpg','','','AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
+  (1,1,0,'REDAXO','Home',1,1,1,'|',1,1,1,'2020-02-21 22:30:25','admin','2023-06-16 22:42:29','admin',0,0,0,'','Community-Demo','REDAXO Community-Demo','steg.jpg','','','AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
   (2,2,0,'Die Demo','Die Demo',2,1,1,'|',1,1,1,'2020-02-21 22:30:26','admin','2020-02-22 16:44:01','admin',0,0,0,'','','','welle.jpg','','','AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
   (3,3,0,'Loginbereich','Loginbereich',3,1,1,'|',1,2,1,'2020-02-21 22:30:27','admin','2020-02-22 16:57:22','admin',0,1,0,'',NULL,NULL,'',NULL,NULL,'AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
   (4,4,0,'Mein Profil','Mein Profil',4,1,1,'|',1,1,1,'2020-02-21 22:30:28','admin','2020-02-21 17:31:54','admin',0,1,0,'',NULL,NULL,'',NULL,NULL,'AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
   (5,5,0,'Login','Login',5,1,1,'|',1,3,1,'2020-02-21 22:30:29','admin','2020-02-22 17:49:06','admin',0,2,0,'','','','hipster.jpg','','','AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
   (6,6,0,'Footer - Hilfsartikel','Footer - Hilfsartikel',6,1,1,'|',0,1,1,'2020-02-22 00:18:43','admin','2020-02-22 11:54:02','admin',0,0,0,'',NULL,NULL,'',NULL,NULL,'AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
-  (7,7,2,'YForm','YForm',1,1,1,'|2|',1,1,1,'2020-02-21 22:30:34','admin','2020-02-22 16:44:34','admin',0,0,0,'','Die Basis','','himmel.jpg','','','AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
+  (7,7,2,'YForm','YForm',1,1,1,'|2|',1,1,1,'2020-02-21 22:30:34','admin','2023-06-17 01:12:06','admin',0,0,0,'','Die Basis','','himmel.jpg','','','AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
   (8,8,2,'YCom','YCom',2,1,1,'|2|',1,1,1,'2020-02-21 22:30:35','admin','2020-02-22 11:51:39','admin',0,0,0,'','Eine Erweiterung von Yform','','code.jpg','','','AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
   (9,9,3,'Alle Gruppen','Alle Gruppen',1,1,1,'|3|',1,2,1,'2020-02-21 22:30:19','admin','2020-02-22 16:16:45','admin',0,1,0,'',NULL,NULL,'',NULL,NULL,'AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
   (10,10,3,'Gruppe A','Gruppe A',2,1,1,'|3|',1,2,1,'2020-02-21 22:30:21','admin','2020-02-22 16:18:38','admin',0,1,2,'1',NULL,NULL,'',NULL,NULL,'AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
   (11,11,3,'Gruppe B','Gruppe B',3,1,1,'|3|',1,2,1,'2020-02-21 22:30:22','admin','2020-02-22 16:20:28','admin',0,1,2,'2',NULL,NULL,'',NULL,NULL,'AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
-  (12,12,4,'Profil','Profil',1,1,1,'|4|',1,2,1,'2020-02-21 22:31:53','admin','2020-02-22 16:46:24','admin',0,0,0,'','','','','','ti-user','AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
+  (12,12,4,'Profil','Profil',1,1,1,'|4|',1,2,1,'2020-02-21 22:31:53','admin','2023-06-16 00:17:03','admin',0,0,0,'','','','','','ti-user','AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
   (13,13,4,'Passwort ändern','Passwort ändern',2,1,1,'|4|',1,2,1,'2020-02-21 22:31:54','admin','2020-02-22 16:47:06','admin',0,0,0,'','','','','','ti-lock','AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
   (14,14,4,'Logout','Logout',3,1,1,'|4|',1,1,1,'2020-02-21 22:31:54','admin','2020-02-22 16:47:50','admin',0,0,0,'','','','','','ti-close','AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
   (15,15,5,'Registrieren','Login',0,0,2,'|5|',1,4,1,'2020-02-21 22:32:17','admin','2022-12-14 14:04:19','admin',0,2,0,'','','','haende.jpg','','','AUTO','','','','','',NULL,NULL,0,'',NULL,NULL),
@@ -96,34 +79,34 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_article_slice`;
 CREATE TABLE `rex_article_slice` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `article_id` int unsigned NOT NULL,
-  `clang_id` int unsigned NOT NULL,
-  `ctype_id` int unsigned NOT NULL,
-  `module_id` int unsigned NOT NULL,
-  `revision` int NOT NULL,
-  `priority` int unsigned NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `value1` mediumtext,
-  `value2` mediumtext,
-  `value3` mediumtext,
-  `value4` mediumtext,
-  `value5` mediumtext,
-  `value6` mediumtext,
-  `value7` mediumtext,
-  `value8` mediumtext,
-  `value9` mediumtext,
-  `value10` mediumtext,
-  `value11` mediumtext,
-  `value12` mediumtext,
-  `value13` mediumtext,
-  `value14` mediumtext,
-  `value15` mediumtext,
-  `value16` mediumtext,
-  `value17` mediumtext,
-  `value18` mediumtext,
-  `value19` mediumtext,
-  `value20` mediumtext,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `article_id` int(10) unsigned NOT NULL,
+  `clang_id` int(10) unsigned NOT NULL,
+  `ctype_id` int(10) unsigned NOT NULL,
+  `module_id` int(10) unsigned NOT NULL,
+  `revision` int(11) NOT NULL,
+  `priority` int(10) unsigned NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `value1` mediumtext DEFAULT NULL,
+  `value2` mediumtext DEFAULT NULL,
+  `value3` mediumtext DEFAULT NULL,
+  `value4` mediumtext DEFAULT NULL,
+  `value5` mediumtext DEFAULT NULL,
+  `value6` mediumtext DEFAULT NULL,
+  `value7` mediumtext DEFAULT NULL,
+  `value8` mediumtext DEFAULT NULL,
+  `value9` mediumtext DEFAULT NULL,
+  `value10` mediumtext DEFAULT NULL,
+  `value11` mediumtext DEFAULT NULL,
+  `value12` mediumtext DEFAULT NULL,
+  `value13` mediumtext DEFAULT NULL,
+  `value14` mediumtext DEFAULT NULL,
+  `value15` mediumtext DEFAULT NULL,
+  `value16` mediumtext DEFAULT NULL,
+  `value17` mediumtext DEFAULT NULL,
+  `value18` mediumtext DEFAULT NULL,
+  `value19` mediumtext DEFAULT NULL,
+  `value20` mediumtext DEFAULT NULL,
   `media1` varchar(255) DEFAULT NULL,
   `media2` varchar(255) DEFAULT NULL,
   `media3` varchar(255) DEFAULT NULL,
@@ -134,16 +117,16 @@ CREATE TABLE `rex_article_slice` (
   `media8` varchar(255) DEFAULT NULL,
   `media9` varchar(255) DEFAULT NULL,
   `media10` varchar(255) DEFAULT NULL,
-  `medialist1` text,
-  `medialist2` text,
-  `medialist3` text,
-  `medialist4` text,
-  `medialist5` text,
-  `medialist6` text,
-  `medialist7` text,
-  `medialist8` text,
-  `medialist9` text,
-  `medialist10` text,
+  `medialist1` text DEFAULT NULL,
+  `medialist2` text DEFAULT NULL,
+  `medialist3` text DEFAULT NULL,
+  `medialist4` text DEFAULT NULL,
+  `medialist5` text DEFAULT NULL,
+  `medialist6` text DEFAULT NULL,
+  `medialist7` text DEFAULT NULL,
+  `medialist8` text DEFAULT NULL,
+  `medialist9` text DEFAULT NULL,
+  `medialist10` text DEFAULT NULL,
   `link1` varchar(10) DEFAULT NULL,
   `link2` varchar(10) DEFAULT NULL,
   `link3` varchar(10) DEFAULT NULL,
@@ -154,16 +137,16 @@ CREATE TABLE `rex_article_slice` (
   `link8` varchar(10) DEFAULT NULL,
   `link9` varchar(10) DEFAULT NULL,
   `link10` varchar(10) DEFAULT NULL,
-  `linklist1` text,
-  `linklist2` text,
-  `linklist3` text,
-  `linklist4` text,
-  `linklist5` text,
-  `linklist6` text,
-  `linklist7` text,
-  `linklist8` text,
-  `linklist9` text,
-  `linklist10` text,
+  `linklist1` text DEFAULT NULL,
+  `linklist2` text DEFAULT NULL,
+  `linklist3` text DEFAULT NULL,
+  `linklist4` text DEFAULT NULL,
+  `linklist5` text DEFAULT NULL,
+  `linklist6` text DEFAULT NULL,
+  `linklist7` text DEFAULT NULL,
+  `linklist8` text DEFAULT NULL,
+  `linklist9` text DEFAULT NULL,
+  `linklist10` text DEFAULT NULL,
   `createdate` datetime NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
@@ -173,14 +156,14 @@ CREATE TABLE `rex_article_slice` (
   KEY `clang_id` (`clang_id`),
   KEY `article_id` (`article_id`),
   KEY `find_slices` (`clang_id`,`article_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_article_slice` WRITE;
 /*!40000 ALTER TABLE `rex_article_slice` DISABLE KEYS */;
 INSERT INTO `rex_article_slice` VALUES 
   (1,5,1,1,1,0,1,1,'','','objparams|form_class|hide-label\r\n\r\nvalidate|ycom_auth|email|passwort||Bitte korrektes Passwort eintragen.|Der Login war nicht erfolgreich.\r\n\r\ntext|email|E-Mail:*|#placeholder:E-Mail*\r\npassword|passwort|Passwort|#placeholder:Passwort*\r\nycom_auth_returnto|returnTo|\r\n\r\nsubmit|label|Abschicken|no_db|btn btn-danger btn-block\r\n','','','','1','',NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-21 22:37:46','admin','2020-02-22 17:41:05','admin'),
   (2,1,1,1,2,0,1,1,'Community-Demo-Website','In dieser Demo kannst Du sehen, wie man mit dem Community-AddOn Loginbereiche erstellen kann, wo sich User registrieren und in geschützte Bereiche einloggen können.','h1','','','','indent',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-21 22:43:58','admin','2020-02-21 22:43:58','admin'),
-  (3,1,1,1,4,0,2,1,'Neue User erfassen','So geht\'s los','Es beginnt mit der Registrierung. Der User muss seine Registrierung natürlich bestätigen. Teste die Registrierung am besten selbst.\r\n\r\nÜbrigens: Wenn Du in REDAXO eingeloggt bist, bekommst Du auf den ganzen Community-Seiten zusätzliche \"Admin-Hinweise\". So kannst Du die reduzierte User-Ansicht sehen, aber bei Bedarf auch weitere Erläuterungen.','shadow','blue','Profilverwaltung','Userdaten ändern','Die Demo zeigt Beispiele, wie man sein eigenes Profil verwalten kann. Dazu wurden die Tabellen um weitere Feldern erweitert – wie z.B. ein Profilbild in der User-Tabelle oder ein Sortierungsfeld in der Gruppen-Tabelle.\r\n\r\nDas YCom-AddOn hilft dabei, die eigenen Userdaten zu laden – sei es zum Anzeigen auf den Seiten oder zum Editieren in Formularen.','shadow','green','Verschlüsselte Passwörter','Passwort vergessen?','Im Vergleich zur früheren Community-Version muss man Passwörter nicht mehr durch eine entsprechende Validierungskation verschlüsseln. Sie werden automatisch verschlüsselt.\r\n\r\nHat der User sein Passwort vergessen, kann und soll man es ihm natürlich nicht zusenden. Die Demo-Website zeigt, wie man ein vergessenes Passwort zurücksetzen kann.','shadow','yellow',NULL,'',NULL,'3',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'15','12','17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-21 22:46:42','admin','2020-02-22 17:17:29','admin'),
+  (3,1,1,1,4,0,2,1,'Neue User erfassen','So geht\'s los','Es beginnt mit der Registrierung. Der User muss seine Registrierung natürlich bestätigen. Teste die Registrierung am besten selbst.\r\n\r\nÜbrigens: Wenn Du in REDAXO eingeloggt bist, bekommst Du auf den ganzen Community-Seiten zusätzliche \"Admin-Hinweise\". So kannst Du die reduzierte User-Ansicht sehen, aber bei Bedarf auch weitere Erläuterungen.','shadow','blue','Profilverwaltung','Userdaten ändern','Die Demo zeigt Beispiele, wie man sein eigenes Profil verwalten kann. Dazu wurden die Tabellen um weitere Felder erweitert – wie z.B. ein Profilbild in der User-Tabelle oder ein Sortierungsfeld in der Gruppen-Tabelle.\r\n\r\nDas YCom-AddOn hilft dabei, die eigenen Userdaten zu laden – sei es zum Anzeigen auf den Seiten oder zum Editieren in Formularen.','shadow','green','Verschlüsselte Passwörter','Passwort vergessen?','Im Vergleich zur früheren Community-Version muss man Passwörter nicht mehr durch eine entsprechende Validierungskation verschlüsseln. Sie werden automatisch verschlüsselt.\r\n\r\nHat der User sein Passwort vergessen, kann und soll man es ihm natürlich nicht zusenden. Die Demo-Website zeigt, wie man ein vergessenes Passwort zurücksetzen kann.','shadow','yellow',NULL,'',NULL,'3',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'15','12','17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-21 22:46:42','admin','2023-06-16 22:42:29','admin'),
   (4,1,1,1,5,0,3,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-21 22:46:47','admin','2020-02-21 22:46:47','admin'),
   (5,15,1,2,1,0,1,1,'','','objparams|form_class|hide-label form-register\r\n\r\ngenerate_key|activation_key\r\nhidden|status|0\r\n\r\nhtml||<div class=\"alert alert-info\"><h4>Bitte registrieren</h4>Felder mit * sind Pflicht.</div>\r\n\r\ntext|email|E-Mail:*|#placeholder:E-Mail*\r\ntext|firstname|#placeholder:Vorname*|Vorname*\r\nvalidate|empty|firstname|Bitte gib Deinen Vornamen ein\r\n\r\ntext|name|#placeholder:Nachname*|Nachname*\r\nvalidate|empty|name|Bitte gib Deinen Nachnamen ein.\r\n\r\nhtml|required|<p class=\"form-required\">Gruppe wählen:</p>\r\nchoice|ycom_groups|Gruppe|SELECT id, name from rex_ycom_group order by prio|1|1|||||||||0|\r\n\r\nhtml||<hr>\r\n\r\nhtml|required|<p class=\"form-required\">Passwort vergeben:</p>\r\nycom_auth_password|password|Passwort:*|{\"length\":{\"min\":6},\"letter\":{\"min\":1},\"lowercase\":{\"min\":0},\"uppercase\":{\"min\":0},\"digit\":{\"min\":1},\"symbol\":{\"min\":0}}|Das Passwort muss mindestens 6 Zeichen lang sein und mindestens eine Ziffer enthalten.\r\npassword|password_2|Passwort bestätigen:*||no_db|#placeholder:Passwort bestätigen*\r\n\r\nspam_protection|honeypot|Bitte nicht ausfüllen|Ihre Anfrage wurde als Spam erkannt und gelöscht. Bitte versuchen Sie es in einigen Minuten erneut oder wenden Sie sich persönlich an uns.|0\r\n\r\nvalidate|type|email|email|Bitte gib die E-Mail ein.\r\nvalidate|unique|email|Diese E-Mail existiert schon.|rex_ycom_user\r\nvalidate|empty|email|Bitte gib Deine E-Mail ein.\r\nvalidate|empty|password|Bitte gib ein Passwort ein.\r\nvalidate|compare|password|password_2|!=|Bitte gib zweimal das gleiche Passwort ein.\r\n\r\nsubmit|label|Abschicken|no_db|btn btn-danger btn-block\r\n\r\n# email als Login verwenden\r\naction|copy_value|email|login\r\naction|db|rex_ycom_user\r\naction|tpl2email|access_request_de|email|\r\n','','','<div class=\"alert alert-success alert-dismissible\" role=\"alert\">\r\n	<h2>Vielen Dank!</h2><p>Du erhältst nun eine E-Mail mit einem Link. Bitte klicke auf den Link zur Bestätigung.</p>\r\n</div>\r\n','0','',NULL,NULL,'1','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-21 23:19:07','admin','2022-12-14 14:04:19','admin'),
   (6,15,1,1,3,0,1,1,'Wie läuft die Registrierung ab?','h3','Die beiden wichtigsten Felder sind E-Mail / Username und Passwort. Die Gruppen steuern, welche User welche Seiten sehen dürfen. (Bei einem richtigen Login wird dies eher der Admin tun.) Eine besondere Bedeutung kommt auch dem Status-Feld zu:\r\n1. ***angefragt***  \r\nNach dem Abschicken des nebenstehenden Formulars wird die Anmeldung in die Usertabelle geschrieben mit dem Status ***0*** (Zugang wurde angefragt). Außerdem bekommt der User eine Mail geschickt mit einem Link, den er anklicken soll.\r\n2. ***bestätigt und aktiv***\r\nNach dem Klick auf diesen Link wird der Status auf ***1*** (bestätigt und aktiv) gesetzt.\r\n3. ***inaktiv***\r\nFalls man einem User den Zugang sperren will, ohne den Zugang gleich zu löschen, so kann man den Status auf ***-1*** (inaktiv) setzen.\r\n3. ***weitere Status-Zustände***\r\nNatürlich könnte man auch andere Wege einer Registrierung aufbauen, indem der User zunächst nur einen Status \"bestätigt\", dann eine E-Mail an den Admin geschickt wird mit einem Link, über den der Admin den User direkt freischalten kann, ohne sich in Redaxo einzuloggen.',NULL,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,NULL,'','','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-21 23:21:28','admin','2020-02-22 17:59:25','admin'),
@@ -200,12 +183,12 @@ INSERT INTO `rex_article_slice` VALUES
   (21,7,1,1,4,0,7,1,'Felder definieren','Values','Im Verzeichnis values sind die PHP-Klassen für die einzelnen Feldtypen abgelegt, z.B. Textarea, Selectfeld, etc. Wenn Du ein ganz individuelles Feld benötigst, kannst Du eine Datei mit der ähnlichsten Felddefinition kopieren und diese Klasse nach Umbenennung für ein eigenes Feld nutzen.','shadow','brown','Felder überprüfen','Validates','Das Verzeichnis validate enthält – wie der Name schon sagt – Klassen zur Überprüfung von Feldeingaben. Zum Beispiel: Ein Feld darf nicht leer sein, die Mailadresse ist nicht valide, die PLZ muss fünf Ziffern haben, ein eingebener Name ist schon der Datenbank vorhanden, etc.','shadow','green','Aktionen nach dem Versand','Actions','Die im Verzeichnis actions versammelten Dateien können verschiedenste Aktionen nach dem Abschicken des Formulars ausführen: einen Bestätigungstext anzeigen, Datenbanken anlegen, Daten speichern, SQL-Befehle ausführen, E-Mails versenden, Werte verschlüsseln u.v.m.','shadow','yellow',NULL,'',NULL,'3',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 09:26:00','admin','2020-02-22 09:26:00','admin'),
   (22,7,1,1,2,0,8,1,'Objparams','Formular-Templates und andere Parameter','h2','','','c','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 09:26:37','admin','2020-02-22 09:26:37','admin'),
   (23,7,1,1,4,0,9,1,'form_skin','Templates','Zu fast jeder Value-Datei existiert eine korrespondierende Template-Datei, die das HTML-Markup für das Formularfeld enthält. Durch diese Trennung von Verarbeitungslogik und HTML-Output kann man \"Themes\" für YForm nutzen und auch eigene erstellen.\r\n\r\nYForm kommt mit einem Default-Skin und einem Bootstrap-Skin, wobei letzteres gleich das von Bootstrap benötige Markup ausliefert. Möchte man das Bootstrap-Skin für ein Formular nutzen, kann man dieses so zuweisen:\r\n````\r\nobjparams|form_skin|bootstrap\r\n\r\n```\r\n\r\nWenn man sich die Ordnerstruktur ansieht, so erkennt man, dass man Yform flexibel selbst erweitern kann: Man legt einen eigenen Theme-Ordner an und erstellt für die gewünschten Felder eigene Template-Dateien an. Bei allen Feldern, die keine eigene Template-Datei bekommen, wird das Template des Default-Themes (classic) verwendet.','','purple','form_id, form_wrap_class','Klassen, IDs und mehr','Außer der Möglichkeit, einem Formular ein Theme zuzuweisen, kann man mit den **objparams** noch viele weitere, das ganze Formular betreffende Einstellungen vornehmen. Sie alle folgen dem Schema:\r\n\r\n**objparams|key|newvalue**\r\n\r\nEinige Beispiele:\r\n\r\n```\r\nsubmit_btn_show | default=1 / mit “0” wird der Standard-Submitbutton versteckt, wenn man z.B. eigene Buttons definiert hat\r\n\r\nform_method | default=post, kann auf “get” gesetzt werden\r\n\r\nform_anchor | default=\"\" / man kann einen Anker in der Formular-Aktion definieren, damit der Browser nach dem Abschicken zur Position des Formulars springt\r\n\r\nform_show | default=1 / Formular anzeigen oder nicht\r\n\r\nreal_field_names | default = 0. Mit dem Wert auf 1 werden exakt die Feldnamen der Formulardefinition im Formular gesetzt\r\n```','shadow','blue','','','','','',NULL,'top',NULL,'2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 09:28:10','admin','2020-02-22 09:28:10','admin'),
-  (24,7,1,1,4,0,10,1,'Eine vollständige Übersicht','Objparams-Referenz','Eine Übersicht der zur Verfügung stehenden Objparams findest Du hier:  \r\n[Wiki des Xform-Repos auf Github](https://github.com/yakamara/redaxo_xform/wiki/10-Formularparameter-(objparams))','shadow','orange','','','','','','','','','','',NULL,'',NULL,'1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 09:28:54','admin','2020-02-22 09:28:54','admin'),
+  (24,7,1,1,4,0,10,1,'Eine vollständige Übersicht','Objparams-Referenz','Eine Übersicht der zur Verfügung stehenden Objparams findest Du hier:  \r\n[YForm-Dokumentation auf Github](https://github.com/yakamara/redaxo_yform/blob/master/docs/07_formbuilder.md#objparams)','shadow','orange','','','','','','','','','','',NULL,'',NULL,'1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 09:28:54','admin','2023-06-16 23:18:01','admin'),
   (25,7,1,1,9,0,11,1,'Feld-Optionen','Grundlegende Syntax',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nebelwald.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 09:43:19','admin','2020-02-22 09:43:19','admin'),
   (26,7,1,1,3,0,12,1,'','h2','Nach der Installation von YForm kann man im AddOn mit einem Mausklick ein YForm-Modul anlegen, in das man lediglich die Values, Validierungen und Aktionen tippen muss. Die genaue Syntax findest Du im Modul.\r\n\r\nSo könnte man ein Textfeld anlegen, in der Zeile darunter wird ein Selectfeld definiert, danach folgt eine Aktion, um die Daten in die Datenbank \"adressen\" zu speichern:\r\n\r\n````\r\ntext|name|Nachname\r\nselect|anrede|Anrede|Anrede=,Frau=w,Herr=m\r\n\r\naction|db|adressen|\r\n```\r\n\r\nMan sieht, dass die einzelnen Optionen jeweils durch ein Pipe-Symbol (vertikaler Strich) abgetrennt sind. Die vollständigen Optionen für jedes Feld kann man direkt im YForm-Modul ersehen. Beim Textfeld findet man beispielsweise folgende Optionen:\r\n````\r\ntext|name|label|defaultwert|[no_db]|cssclassname\r\n```\r\n\r\n- **text:** Dies definiert den Feldtyp\r\n- **name:** der interne Feld-Name\r\n- **label:** das vor dem Feld sichtbare Label (Feldbeschriftung)\r\n- **defaultwert:** Damit kann man einen Standardwert in das Feld setzen\r\n- **no_db:** Speichert eine Aktion die Felddaten in die Datenbank, so gibt es hin und wieder Felder, die man nicht gespeichert haben will, z.B. den Wert eines Submit-Buttons\r\n- **cssclassname:** Damit kann man dem Feld eine individuelle CSS-Klasse zuweisen\r\n\r\n---\r\n\r\n###  Verschiedene Schreibweisen\r\n\r\nMan muss nicht das YForm-Modul verwenden, sondern kann auch die PHP-Schreibweise verwenden:\r\n\r\n```\r\naction|db|adressen|\r\n$yform = new rex_yform();\r\n$yform->setValueField(\'text\', array(\"name\",\"Nachname\"));\r\n$yform->setValueField(\'select\', array(\"anrede\",\"Anrede\",\"Anrede=,Frau=w,Herr=m\"));\r\n$yform->setActionField(\'db\', array(\'adressen\'));\r\necho $yform->getForm();\r\n```\r\n\r\n**Tipp:** Bei einer mit dem Table Manager angelegten Tabelle kann man sich den Formular-Code in den Versionen ***PHP*** (hilfreich bei eigenen Anpassungen), ***Pipe*** (im YForm-Modul verwendet) und ***E-Mail*** (für den Versand mit Email-Templates) generieren lassen.\r\n\r\n---\r\n\r\nDer zweite der folgenden Screenshots zeigt Beispieleingaben für ein Formular.',NULL,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,NULL,'','vd','','mtb',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 09:44:04','admin','2020-02-22 09:44:04','admin'),
   (27,7,1,1,8,0,13,1,'2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'yform_struktur.jpg,yform_beispiel.jpg,yform_values.jpg,yform_actions.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 09:44:55','admin','2020-02-22 09:44:55','admin'),
   (28,7,1,1,2,0,14,1,'Ein Beispielformular mit YForm','','h2','','top','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 09:45:39','admin','2020-02-22 09:45:39','admin'),
-  (29,7,1,1,1,0,15,1,'','','objparams|real_field_names|1\r\n\r\ntext|demo_text|Textfeld\r\n\r\ntextarea|demo_textarea|Textarea\r\n\r\nselect|demo_select|Selectfeld|Anrede=,Frau=w,Herr=m\r\n\r\nhtml||<hr>\r\n\r\nfieldset|fieldset_checkbox|Checkbox\r\ncheckbox|demo_checkbox_ok|Einverstanden?||1\r\ncheckbox|demo_checkbox_laune|Gut gelaunt heute?\r\n\r\nhtml||<hr>\r\n\r\nfieldset|fieldset_radio|Radio-Button\r\nradio|demo_radio_anrede|Anrede|Frau=w,Herr=m\r\n\r\nhtml||<hr>\r\n\r\nfieldset|fieldset_more|Weitere Felder\r\n\r\ndate|demo_date|Datum wählen|2016|+10|DD/MM/YYYY|1\r\ndatetime|demo_abfahrt|Abfahrt|2010|2020|00,15,30,45|DD/MM/YYYY - HH:ii Uhr|1|no_db\r\n\r\ncaptcha|Spamschutz|Bitte korrektes Rechenergebnis eingeben\r\n\r\nhtml||<p>User dynamisch als Checkboxen darstellen</p>\r\n\r\ncheckbox_sql|user|User|select id, concat(name,\', \',firstname) as name from rex_ycom_user order by name\r\n\r\nsubmit|demo_submit|Abschicken!','','','','0','',NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 09:46:02','admin','2020-02-22 09:46:02','admin'),
+  (29,7,1,1,1,0,15,1,'','','objparams|real_field_names|1\r\nobjparams|form_showformafterupdate|1\r\nobjparams|form_wrap_id|demo_form\r\nobjparams|form_anchor|demo_form\r\nobjparams|csrf_protection|0\r\n\r\ntext|demo_text|Textfeld\r\n\r\ntextarea|demo_textarea|Textarea\r\n\r\nchoice|demo_select|Selectfeld|Anrede=,Frau=w,Herr=m\r\n\r\nhtml||<hr>\r\n\r\nfieldset|fieldset_checkbox|Checkbox\r\ncheckbox|demo_checkbox_ok|Einverstanden?||1\r\ncheckbox|demo_checkbox_laune|Gut gelaunt heute?\r\n\r\nhtml||<hr>\r\n\r\nfieldset|fieldset_radio|Radio-Button\r\nchoice|demo_anrede||{\"Anrede\": {\"Frau\":\"w\",\"Herr\":\"m\"}}|1|0|\r\n\r\nhtml||<hr>\r\n\r\nfieldset|fieldset_more|Weitere Felder\r\n\r\ndate|demo_date|Datum wählen|2016|+10|DD/MM/YYYY|1\r\ndatetime|demo_abfahrt|Abfahrt|2010|2020|00,15,30,45|DD/MM/YYYY - HH:ii Uhr|1|no_db\r\n\r\nspam_protection|honeypot|Bitte nicht ausfüllen|Ihre Anfrage wurde als Spam erkannt und gelöscht. Bitte versuchen Sie es in einigen Minuten erneut oder wenden Sie sich persönlich an uns.|0\r\n\r\nhtml||<p>User dynamisch als Checkboxen darstellen</p>\r\n\r\nchoice|user|User|select id, concat(name,\', \',firstname) as name from rex_ycom_user order by name|1|1||||--- bitte auswählen ---\r\n\r\nsubmit|demo_submit|Abschicken!','','','','0','',NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 09:46:02','admin','2023-06-17 01:12:06','admin'),
   (30,8,1,1,2,0,1,1,'YCom','Geschützter Login und Community-Funktionen','h1','','','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 11:46:41','admin','2020-02-22 11:46:41','admin'),
   (31,8,1,1,3,0,2,1,'','h2','Das AddOn YCom bringt derzeit zwei Plugins mit: **group** zur Verwaltung von Usergruppen und **auth** zur Authentifizierung bei Login-Vorgängen oder anderen Anmeldeaktionen. Weitere Plugins wie z.B. Kommentarfunktion oder Newsletter werden folgen.',NULL,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,NULL,'','vd','bottom','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 11:47:11','admin','2020-02-22 11:47:11','admin'),
   (32,8,1,1,2,0,3,1,'Prinzip der Authentifizierung','','h1','','','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 11:47:30','admin','2020-02-22 11:47:30','admin'),
@@ -233,7 +216,7 @@ INSERT INTO `rex_article_slice` VALUES
   (54,17,1,1,3,0,1,1,'Passwort zurücksetzen','h2','Um das Passwort zurückzusetzen, wird nach Eingabe der Mailadresse ein Activation Key generiert und eine Mail verschickt mit einem Link.\r\n\r\nDieser Link authentifiziert den User aufgrund der Kombination Mailadresse und Activation Key und loggt den User direkt ein, so dass er selbst in seinem Profil ein anderes Passwort vergeben kann.',NULL,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,NULL,'','','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 14:31:11','admin','2020-02-22 18:51:36','admin'),
   (55,18,1,1,1,0,1,1,'','','objparams|submit_btn_show|0\r\nobjparams|send|1\r\nobjparams|csrf_protection|0\r\n\r\nvalidate|ycom_auth_login|activation_key=rex_ycom_activation_key,email=rex_ycom_id|status=1|Das Zurücksetzen des Passworts war nicht erfolgreich.|status\r\n\r\naction|ycom_auth_db|update\r\naction|html|<h2>Hat geklappt!</h2><p>Du bist jetzt eingeloggt und kannst Dein Passwort im Profilbereich ändern.</p>','','','','0','',NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 14:33:07','admin','2020-02-22 17:35:37','admin'),
   (56,12,1,1,2,0,1,1,'Profil ändern','','h1','','','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 14:35:31','admin','2020-02-22 14:35:31','admin'),
-  (57,12,1,1,1,0,2,1,'','','ycom_auth_load_user|userinfo|email,firstname,name,slogan,ycom_groups,pic\r\nobjparams|form_showformafterupdate|1\r\nshowvalue|email|E-Mail / Login:\r\n\r\ntext|firstname|Vorname:\r\nvalidate|empty|firstname|Bitte geben gib Deinen Vornamen ein.\r\n\r\ntext|name|Nachname:\r\nvalidate|empty|name|Bitte gib Deinen Nachnamen ein.\r\n\r\nhtml||<hr>\r\n\r\ntextarea|slogan|Motto:\r\nvalidate|empty|slogan|Bitte gib Dein Motto ein.\r\n\r\nhtml||<hr>\r\n\r\nhtml|required|<p class=\"form-required\">Bitte Gruppe wählen:</p>\r\ncheckbox_sql|ycom_groups|Gruppe|select id, name from rex_ycom_group order by prio|\r\n\r\nhtml||<hr>\r\n\r\nmediafile|pic|Profilfoto|1000|.jpg,.png||min_err,max_err,type_err,empty_err||3|\r\n\r\naction|showtext|<div class=\"alert alert-success\">Die Profildaten wurden aktualisiert. (Anzeige mit action \"showtext\")</div>|||1\r\naction|ycom_auth_db\r\n','','','<div class=\"alert alert-success alert-with-icon\" data-notify=\"container\">\r\n            <div class=\"container\">\r\n                <div class=\"alert-wrapper\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Schließen\">\r\n                      <span aria-hidden=\"true\">×</span>\r\n                    </button>\r\n                    <i class=\"alert-icon ti-check\"></i>\r\n                    <div class=\"message\">Die Profildaten wurden gespeichert. (Anzeige mit dem Meldungsfeld)</div>\r\n                </div>\r\n            </div>\r\n        </div>','0','',NULL,NULL,'1','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 14:38:50','admin','2020-02-22 16:32:09','admin'),
+  (57,12,1,1,1,0,2,1,'','','ycom_auth_load_user|userinfo|email,firstname,name,slogan,ycom_groups,pic\r\nobjparams|form_showformafterupdate|1\r\nshowvalue|email|E-Mail / Login:\r\n\r\ntext|firstname|Vorname:\r\nvalidate|empty|firstname|Bitte geben gib Deinen Vornamen ein.\r\n\r\ntext|name|Nachname:\r\nvalidate|empty|name|Bitte gib Deinen Nachnamen ein.\r\n\r\nhtml||<hr>\r\n\r\ntextarea|slogan|Motto:\r\nvalidate|empty|slogan|Bitte gib Dein Motto ein.\r\n\r\nhtml||<hr>\r\n\r\nhtml|required|<p class=\"form-required\">Bitte Gruppe wählen:</p>\r\nchoice|ycom_groups|Gruppe|select id, name from rex_ycom_group order by prio|0|0||name|8,5|--- bitte auswählen ---\r\n\r\nhtml||<hr>\r\n\r\nmediafile|pic|Profilfoto|1000|.jpg,.png||min_err,max_err,type_err,empty_err||3|\r\n\r\naction|showtext|<div class=\"alert alert-success\">Die Profildaten wurden aktualisiert. (Anzeige mit action \"showtext\")</div>|||1\r\naction|ycom_auth_db\r\n','','','<div class=\"alert alert-success alert-with-icon\" data-notify=\"container\">\r\n            <div class=\"container\">\r\n                <div class=\"alert-wrapper\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Schließen\">\r\n                      <span aria-hidden=\"true\">×</span>\r\n                    </button>\r\n                    <i class=\"alert-icon ti-check\"></i>\r\n                    <div class=\"message\">Die Profildaten wurden gespeichert. (Anzeige mit dem Meldungsfeld)</div>\r\n                </div>\r\n            </div>\r\n        </div>','0','',NULL,NULL,'1','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 14:38:50','admin','2023-06-16 00:17:03','admin'),
   (58,3,1,1,2,0,1,1,'Loginbereich','Erläuterungen zur Struktur','h1','','','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 14:58:33','admin','2020-02-22 14:58:33','admin'),
   (59,3,1,1,3,0,2,1,'','h2','In dieser Demo liegen alle geschützten Seiten in der Kategorie \"Loginbereich\" – in der Du Dich jetzt gerade befindest. Das muss aber nicht so sein. Denn das YCom-AddOn ist so flexibel angelegt, dass man beliebige einzelne Artikel und Kategorien schützen, ebenso aber auch die User-Rechte rekursiv für ganze Kategoriebäume definieren kann.',NULL,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,NULL,'','','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 14:58:51','admin','2020-02-22 14:58:51','admin'),
   (60,3,1,1,4,0,3,1,'Hinweis','Navigationen mit der rex_ycom_navigation::factory()','Natürlich muss auch die Navigation die Userberechtigungen berücksichtigten, damit keine Seiten in der Navigation auftauchen, für die man kein Rechte besitzt.\r\n\r\nHierfür muss die Klasse **rex_navigation::factory** mittels **addCallback(\'rex_ycom_auth::articleIsPermitted\')** erweitert werden. Die Navigation der Seitenspalte in dieser Demo wurde so realisiert.\r\n\r\nAlternativ kann man bei selbst programmierten Navigationen die Rechtedefinition jedes Artikels prüfen mit **$ycom_user = rex_ycom_auth::getUser()**. Dieser Weg wurde in der Demo gewählt für die Hauptnavigation:\r\n**if (rex_article::get($article_id)->isPermitted())**','','green','','','','','','','','','','',NULL,'',NULL,'1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-02-22 14:59:28','admin','2020-02-22 16:57:22','admin'),
@@ -255,14 +238,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_clang`;
 CREATE TABLE `rex_clang` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `priority` int unsigned NOT NULL,
+  `priority` int(10) unsigned NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `revision` int unsigned NOT NULL,
+  `revision` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_clang` WRITE;
 /*!40000 ALTER TABLE `rex_clang` DISABLE KEYS */;
@@ -277,19 +260,28 @@ CREATE TABLE `rex_config` (
   `key` varchar(255) NOT NULL,
   `value` text NOT NULL,
   PRIMARY KEY (`namespace`,`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_config` WRITE;
 /*!40000 ALTER TABLE `rex_config` DISABLE KEYS */;
 INSERT INTO `rex_config` VALUES 
-  ('core','package-config','{\"backup\":{\"install\":true,\"status\":true},\"be_style\":{\"install\":true,\"status\":true,\"plugins\":{\"customizer\":{\"install\":false,\"status\":false},\"redaxo\":{\"install\":true,\"status\":true}}},\"cronjob\":{\"install\":false,\"status\":false,\"plugins\":{\"article_status\":{\"install\":false,\"status\":false},\"optimize_tables\":{\"install\":false,\"status\":false}}},\"debug\":{\"install\":false,\"status\":false},\"demo_community\":{\"install\":true,\"status\":true},\"developer\":{\"install\":true,\"status\":true},\"install\":{\"install\":true,\"status\":true},\"markitup\":{\"install\":true,\"status\":true,\"plugins\":{\"documentation\":{\"install\":false,\"status\":false}}},\"media_manager\":{\"install\":true,\"status\":true},\"mediapool\":{\"install\":true,\"status\":true},\"metainfo\":{\"install\":true,\"status\":true},\"phpmailer\":{\"install\":true,\"status\":true},\"project\":{\"install\":true,\"status\":true},\"structure\":{\"install\":true,\"status\":true,\"plugins\":{\"content\":{\"install\":true,\"status\":true},\"history\":{\"install\":false,\"status\":false},\"version\":{\"install\":false,\"status\":false}}},\"users\":{\"install\":true,\"status\":true},\"ycom\":{\"install\":true,\"status\":true,\"plugins\":{\"auth\":{\"install\":true,\"status\":true},\"group\":{\"install\":true,\"status\":true},\"media_auth\":{\"install\":false,\"status\":false}}},\"yform\":{\"install\":true,\"status\":true,\"plugins\":{\"email\":{\"install\":true,\"status\":true},\"manager\":{\"install\":true,\"status\":true},\"rest\":{\"install\":false,\"status\":false},\"tools\":{\"install\":false,\"status\":false}}},\"yform_spam_protection\":{\"install\":true,\"status\":true,\"plugins\":{\"recaptcha\":{\"install\":false,\"status\":false}}},\"yrewrite\":{\"install\":true,\"status\":true}}'),
-  ('core','package-order','[\"be_style\",\"be_style\\/redaxo\",\"users\",\"backup\",\"developer\",\"install\",\"markitup\",\"media_manager\",\"mediapool\",\"phpmailer\",\"structure\",\"metainfo\",\"structure\\/content\",\"yform\",\"yform\\/email\",\"yform\\/manager\",\"yform_spam_protection\",\"yrewrite\",\"ycom\",\"demo_community\",\"ycom\\/auth\",\"ycom\\/group\",\"project\"]'),
+  ('be_style/customizer','codemirror','1'),
+  ('be_style/customizer','codemirror-langs','0'),
+  ('be_style/customizer','codemirror-options','\"\"'),
+  ('be_style/customizer','codemirror-selectors','\"\"'),
+  ('be_style/customizer','codemirror-tools','0'),
+  ('be_style/customizer','codemirror_darktheme','\"dracula\"'),
+  ('be_style/customizer','codemirror_theme','\"eclipse\"'),
+  ('be_style/customizer','labelcolor','\"#3bb594\"'),
+  ('be_style/customizer','showlink','1'),
+  ('core','package-config','{\"backup\":{\"install\":true,\"status\":true},\"be_style\":{\"install\":true,\"status\":true,\"plugins\":{\"customizer\":{\"install\":true,\"status\":false},\"redaxo\":{\"install\":true,\"status\":true}}},\"cronjob\":{\"install\":false,\"status\":false,\"plugins\":{\"article_status\":{\"install\":false,\"status\":false},\"optimize_tables\":{\"install\":false,\"status\":false}}},\"debug\":{\"install\":false,\"status\":false},\"demo_base\":{\"install\":false,\"status\":false},\"demo_community\":{\"install\":true,\"status\":true},\"demo_fullpage\":{\"install\":false,\"status\":false},\"demo_onepage\":{\"install\":false,\"status\":false},\"developer\":{\"install\":true,\"status\":true},\"install\":{\"install\":true,\"status\":true},\"markitup\":{\"install\":true,\"status\":true,\"plugins\":{\"documentation\":{\"install\":false,\"status\":false}}},\"media_manager\":{\"install\":true,\"status\":true},\"mediapool\":{\"install\":true,\"status\":true},\"metainfo\":{\"install\":true,\"status\":true},\"phpmailer\":{\"install\":true,\"status\":true},\"project\":{\"install\":true,\"status\":true},\"structure\":{\"install\":true,\"status\":true,\"plugins\":{\"content\":{\"install\":true,\"status\":true},\"history\":{\"install\":false,\"status\":false},\"version\":{\"install\":false,\"status\":false}}},\"users\":{\"install\":true,\"status\":true},\"ycom\":{\"install\":true,\"status\":true,\"plugins\":{\"auth\":{\"install\":true,\"status\":true},\"group\":{\"install\":true,\"status\":true},\"media_auth\":{\"install\":false,\"status\":false}}},\"yform\":{\"install\":true,\"status\":true,\"plugins\":{\"email\":{\"install\":true,\"status\":true},\"manager\":{\"install\":true,\"status\":true},\"rest\":{\"install\":false,\"status\":false},\"tools\":{\"install\":false,\"status\":false}}},\"yform_mediafile\":{\"install\":true,\"status\":true},\"yform_spam_protection\":{\"install\":true,\"status\":true,\"plugins\":{\"recaptcha\":{\"install\":false,\"status\":false}}},\"yrewrite\":{\"install\":true,\"status\":true}}'),
+  ('core','package-order','[\"be_style\",\"be_style\\/redaxo\",\"users\",\"backup\",\"developer\",\"install\",\"markitup\",\"media_manager\",\"mediapool\",\"phpmailer\",\"structure\",\"metainfo\",\"structure\\/content\",\"yform\",\"yform\\/email\",\"yform\\/manager\",\"yform_mediafile\",\"yform_spam_protection\",\"yrewrite\",\"ycom\",\"demo_community\",\"ycom\\/auth\",\"ycom\\/group\",\"project\"]'),
   ('core','utf8mb4','false'),
   ('core','version','\"5.10.0\"'),
   ('developer','actions','true'),
   ('developer','delete','true'),
   ('developer','dir_suffix','true'),
-  ('developer','items','{\"templates\":{\"1\":1582306440,\"2\":1582379710,\"3\":1582324983,\"4\":1582324946,\"5\":1582325775,\"6\":1671013908,\"7\":1,\"8\":1582403611,\"9\":1582380569,\"10\":1},\"modules\":{\"1\":1582307108,\"2\":1,\"3\":1,\"4\":1,\"5\":1,\"6\":1,\"7\":1,\"8\":1671014540,\"9\":1582315237,\"10\":1,\"11\":1,\"12\":1}}'),
+  ('developer','items','{\"templates\":{\"1\":1582302840,\"2\":1582376110,\"3\":1582321383,\"4\":1582321346,\"5\":1582322175,\"6\":1671010308,\"7\":1,\"8\":1582400011,\"9\":1582376969,\"10\":1686912690},\"modules\":{\"1\":1582303508,\"2\":1,\"3\":1,\"4\":1,\"5\":1,\"6\":1,\"7\":1,\"8\":1671010940,\"9\":1582311637,\"10\":1,\"11\":1,\"12\":1}}'),
   ('developer','modules','true'),
   ('developer','prefix','false'),
   ('developer','rename','true'),
@@ -364,16 +356,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_markitup_profiles`;
 CREATE TABLE `rex_markitup_profiles` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
   `urltype` varchar(50) NOT NULL,
-  `minheight` smallint unsigned NOT NULL,
-  `maxheight` smallint unsigned NOT NULL,
+  `minheight` smallint(5) unsigned NOT NULL,
+  `maxheight` smallint(5) unsigned NOT NULL,
   `type` varchar(50) NOT NULL,
   `markitup_buttons` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_markitup_profiles` WRITE;
 /*!40000 ALTER TABLE `rex_markitup_profiles` DISABLE KEYS */;
@@ -383,37 +375,28 @@ INSERT INTO `rex_markitup_profiles` VALUES
 /*!40000 ALTER TABLE `rex_markitup_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
-DROP TABLE IF EXISTS `rex_markitup_snippets`;
-CREATE TABLE `rex_markitup_snippets` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL DEFAULT '',
-  `lang` varchar(30) NOT NULL DEFAULT '',
-  `description` text NOT NULL,
-  `content` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 DROP TABLE IF EXISTS `rex_media`;
 CREATE TABLE `rex_media` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `category_id` int unsigned NOT NULL,
-  `attributes` text,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` int(10) unsigned NOT NULL,
+  `attributes` text DEFAULT NULL,
   `filetype` varchar(255) DEFAULT NULL,
   `filename` varchar(255) DEFAULT NULL,
   `originalname` varchar(255) DEFAULT NULL,
   `filesize` varchar(255) DEFAULT NULL,
-  `width` int unsigned DEFAULT NULL,
-  `height` int unsigned DEFAULT NULL,
+  `width` int(10) unsigned DEFAULT NULL,
+  `height` int(10) unsigned DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `createdate` datetime NOT NULL,
-  `revision` int unsigned NOT NULL,
+  `revision` int(10) unsigned NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
-  `med_description` text,
+  `med_description` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `filename` (`filename`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_media` WRITE;
 /*!40000 ALTER TABLE `rex_media` DISABLE KEYS */;
@@ -453,19 +436,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_media_category`;
 CREATE TABLE `rex_media_category` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `parent_id` int unsigned NOT NULL,
+  `parent_id` int(10) unsigned NOT NULL,
   `path` varchar(255) NOT NULL,
   `createdate` datetime NOT NULL,
-  `attributes` text,
-  `revision` int unsigned NOT NULL,
+  `attributes` text DEFAULT NULL,
+  `revision` int(10) unsigned NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_media_category` WRITE;
 /*!40000 ALTER TABLE `rex_media_category` DISABLE KEYS */;
@@ -478,8 +461,8 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_media_manager_type`;
 CREATE TABLE `rex_media_manager_type` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `status` int unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `status` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `createdate` datetime NOT NULL,
@@ -488,7 +471,7 @@ CREATE TABLE `rex_media_manager_type` (
   `updateuser` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_media_manager_type` WRITE;
 /*!40000 ALTER TABLE `rex_media_manager_type` DISABLE KEYS */;
@@ -510,17 +493,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_media_manager_type_effect`;
 CREATE TABLE `rex_media_manager_type_effect` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `type_id` int unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `type_id` int(10) unsigned NOT NULL,
   `effect` varchar(255) NOT NULL,
   `parameters` text NOT NULL,
-  `priority` int unsigned NOT NULL,
+  `priority` int(10) unsigned NOT NULL,
   `createdate` datetime NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_media_manager_type_effect` WRITE;
 /*!40000 ALTER TABLE `rex_media_manager_type_effect` DISABLE KEYS */;
@@ -553,25 +536,25 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_metainfo_field`;
 CREATE TABLE `rex_metainfo_field` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `priority` int unsigned NOT NULL,
+  `priority` int(10) unsigned NOT NULL,
   `attributes` text NOT NULL,
-  `type_id` int unsigned DEFAULT NULL,
+  `type_id` int(10) unsigned DEFAULT NULL,
   `default` varchar(255) NOT NULL,
-  `params` text,
-  `validate` text,
-  `callback` text,
-  `restrictions` text,
-  `templates` text,
+  `params` text DEFAULT NULL,
+  `validate` text DEFAULT NULL,
+  `callback` text DEFAULT NULL,
+  `restrictions` text DEFAULT NULL,
+  `templates` text DEFAULT NULL,
   `createdate` datetime NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_metainfo_field` WRITE;
 /*!40000 ALTER TABLE `rex_metainfo_field` DISABLE KEYS */;
@@ -589,12 +572,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_metainfo_type`;
 CREATE TABLE `rex_metainfo_type` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `label` varchar(255) DEFAULT NULL,
   `dbtype` varchar(255) NOT NULL,
-  `dblength` int NOT NULL,
+  `dblength` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_metainfo_type` WRITE;
 /*!40000 ALTER TABLE `rex_metainfo_type` DISABLE KEYS */;
@@ -617,7 +600,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_module`;
 CREATE TABLE `rex_module` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(191) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `output` mediumtext NOT NULL,
@@ -626,11 +609,11 @@ CREATE TABLE `rex_module` (
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
-  `attributes` text,
-  `revision` int unsigned NOT NULL,
+  `attributes` text DEFAULT NULL,
+  `revision` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_module` WRITE;
 /*!40000 ALTER TABLE `rex_module` DISABLE KEYS */;
@@ -650,30 +633,22 @@ INSERT INTO `rex_module` VALUES
 /*!40000 ALTER TABLE `rex_module` ENABLE KEYS */;
 UNLOCK TABLES;
 
-DROP TABLE IF EXISTS `rex_module_action`;
-CREATE TABLE `rex_module_action` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `module_id` int unsigned NOT NULL,
-  `action_id` int unsigned NOT NULL,
-  `revision` int unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 DROP TABLE IF EXISTS `rex_template`;
 CREATE TABLE `rex_template` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(191) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `content` mediumtext,
+  `content` mediumtext DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
   `createdate` datetime NOT NULL,
   `createuser` varchar(255) NOT NULL,
   `updatedate` datetime NOT NULL,
   `updateuser` varchar(255) NOT NULL,
-  `attributes` text,
-  `revision` int NOT NULL,
+  `attributes` text DEFAULT NULL,
+  `revision` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rex_template` WRITE;
 /*!40000 ALTER TABLE `rex_template` DISABLE KEYS */;
@@ -687,28 +662,15 @@ INSERT INTO `rex_template` VALUES
   (7,NULL,'06 . Headerbild','<?php\r\n// Headerbild rekursiv einbinden.\r\n// Wenn der aktuelle Artikel kein Bild hat, wird das aus den Elternkategorien genommen.\r\n$header = \'\';\r\n$headerpic = $this->getValue(\'art_file\');\r\n\r\nif ($headerpic == \'\') {\r\n    $category = rex_article::getCurrent()->getCategory();\r\n    while ($header == \'\') {\r\n        if ($category == null) {\r\n            break;\r\n        }\r\n        $headerpic = $category->getValue(\'art_file\');\r\n        $category = $category->getParent();\r\n    } \r\n}\r\n\r\nif ($headerpic == \'\') {\r\n    $headerpic = rex_article::getSiteStartArticle()->getValue(\'art_file\');\r\n}\r\n\r\n\r\n$header = \'\r\n<div class=\"header\" style=\"background-image: url(\'.rex_url::base(\'index.php?rex_media_type=header&rex_media_file=\'.$headerpic).\');\r\n    \">\r\n	<div class=\"filter\"></div>\r\n	<div class=\"container text-center\">\r\n		<h1>\'.$this->getValue(\'name\').\'</h1>\';\r\n		if ($this->getValue(\'art_subtitle\') != \'\') {\r\n			$header .= \'\r\n			<h3>\'.$this->getValue(\'art_subtitle\').\'</h3>\';\r\n		}\r\n	$header .= \' \r\n	</div>\r\n</div>\';\r\n\r\nif (SITE_TYPE == \'col1\' || SITE_TYPE == \'col2\') {\r\necho $header;\r\n}\r\n?>\r\n',0,'2020-02-21 17:42:50','admin','0000-00-00 00:00:00','','{\"ctype\":[],\"modules\":{\"1\":{\"all\":\"1\"}},\"categories\":{\"all\":\"1\"}}',0),
   (8,NULL,'07 . Navigation','<?php\r\n$path = explode(\"|\",$this->getValue(\"path\").$this->getValue(\"article_id\").\"|\");\r\n$path1 = ((!empty($path[1])) ? $path[1] : \'\');\r\n$path2 = ((!empty($path[2])) ? $path[2] : \'\');\r\n\r\n// Gruppen-Berechtigung eines YCom-Nutzers auslesen\r\n$ycom_user = rex_ycom_auth::getUser();\r\n$nav_main = \'\';\r\n\r\nforeach (rex_category::getRootCategories(true) as $lev1) { // wenn true, dann werden nur die Artikel mit Status online berücksichtigt\r\n\r\n	if (rex_article::get($lev1->getId())->isPermitted() && $lev1->getId() != rex_article::getSiteStartArticleId()) { // Home soll nicht in der Navi auftauchen\r\n		\r\n		if ($lev1->getId() == 4) { // falls Profilkategorie, dann Profil-Foto\r\n			$profile_pic = \'profile_default.png\';\r\n			if ($ycom_user && rex_ycom_auth::getUser()->getValue(\'pic\') != \'\') $profile_pic = rex_ycom_auth::getUser()->getValue(\'pic\'); // prüfen, ob User eingeloggt ist und ob er ein Bild bhinterlegt hat\r\n			$profilelink = \'\r\n			<a href=\"#\" class=\"profile-photo dropdown-toggle\" data-toggle=\"dropdown\">\r\n                <div class=\"profile-photo-small\">\r\n                    <img src=\"index.php?rex_media_type=profile&rex_media_file=\'.$profile_pic.\'\" alt=\"Profilbild\" class=\"img-circle img-responsive img-no-padding\">\r\n                </div>\r\n            </a>\';\r\n		} else {\r\n			$profilelink = \'\r\n			<a class=\"dropdown-toggle\" href=\"\'.$lev1->getUrl().\'\">\'.htmlspecialchars($lev1->getValue(\'name\')).\'</a>\';\r\n		}\r\n\r\n		if ($lev1->getId() == $path1) {\r\n			$nav_main .= \'\r\n			<li class=\"dropdown active\">\'.$profilelink;\r\n		} else {\r\n   			$nav_main .= \'\r\n			<li class=\"dropdown\">\'.$profilelink;\r\n		}\r\n\r\n		// 1st level start\r\n		$lev1Size = sizeof($lev1->getChildren(true));\r\n\r\n			if ($lev1Size != \"0\") {\r\n\r\n				$nav_main .= \'\r\n				<ul class=\"dropdown-menu dropdown-menu-right\">\';\r\n\r\n					// START 2nd level categories\r\n					foreach ($lev1->getChildren(true) as $lev2):\r\n						if (rex_article::get($lev2->getId())->isPermitted()) {\r\n\r\n							$nav_icon = ($lev2->getValue(\'art_nav_icon\') != \'\') ? \'<span class=\"icon-simple\"><i class=\"\'.$lev2->getValue(\'art_nav_icon\').\'\"></i></span> \' : \'\';\r\n\r\n							if ($lev2->getId() == $path2) {\r\n								$nav_main .= \'\r\n								<li class=\"dropdown-toggle active\"><a href=\"\'.$lev2->getUrl().\'\">\'.$nav_icon.htmlspecialchars($lev2->getValue(\'name\')).\'</a></li>\';\r\n							} else {\r\n								$nav_main .= \'\r\n								<li class=\"dropdown-toggle\"><a href=\"\'.$lev2->getUrl().\'\">\'.$nav_icon.htmlspecialchars($lev2->getValue(\'name\')).\'</a></li>\';\r\n							}\r\n						}\r\n					endforeach;\r\n\r\n				$nav_main .= \'\r\n				</ul>\';\r\n\r\n			}\r\n\r\n		$nav_main .= \'\r\n		</li>\';\r\n	}\r\n}\r\n\r\necho \'\r\n<ul class=\"nav navbar-nav navbar-right\">\r\n	\'.$nav_main.\'\r\n</ul>\';\r\n?>\r\n',0,'2020-02-22 20:33:31','admin','2020-02-22 20:33:31','admin','{\"ctype\":[],\"modules\":{\"1\":{\"all\":\"1\"}},\"categories\":{\"all\":\"1\"}}',0),
   (9,NULL,'08 . Subnavigation (Seitenspalte)','<?php\r\n$path = explode(\"|\",$this->getValue(\"path\").$this->getValue(\"article_id\").\"|\");\r\n$path1 = ((!empty($path[1])) ? $path[1] : \'\');\r\n$path2 = ((!empty($path[2])) ? $path[2] : \'\');\r\n\r\n$article = rex_article::get($path1);\r\n$articleUrl = $article->getUrl();\r\n$articleName = $article->getName();\r\n\r\n$nav = rex_navigation::factory();\r\n$nav->addCallback(\'rex_ycom_auth::articleIsPermitted\');\r\n$subnav = $nav->get($path1,2,TRUE,TRUE);\r\n\r\nif ($subnav != \'\') {\r\n\r\n	echo \'\r\n	<h4 id=\"sidenav_title\"><a href=\"\'.$articleUrl.\'\">\'.$articleName.\'</a></h4>\';\r\n\r\n	echo \'\r\n	<div class=\"subnav\">\r\n	\'.$subnav.\'\r\n	</div\';\r\n\r\n}\r\n?>\r\n',0,'2020-02-22 14:09:29','admin','2020-02-22 14:09:29','admin','{\"ctype\":[],\"modules\":{\"1\":{\"all\":\"1\"}},\"categories\":{\"all\":\"1\"}}',0),
-  (10,NULL,'09 . Footer Hilfstemplate','<footer class=\"section-dark\">\r\n	<div class=\"container\">\r\n		<nav class=\"pull-left\">\r\n			REX_ARTICLE[id=6]\r\n		</nav>\r\n		<div class=\"copyright pull-right\">\r\n			&copy; 2016 – REDAXO CMS <i class=\"fa fa-heart heart\"></i> ya all!\r\n		</div>\r\n	</div>\r\n</footer>',0,'2020-02-21 17:44:08','admin','0000-00-00 00:00:00','','{\"ctype\":[],\"modules\":{\"1\":{\"all\":\"1\"}},\"categories\":{\"all\":\"1\"}}',0);
+  (10,NULL,'09 . Footer Hilfstemplate','<footer class=\"section-dark\">\r\n	<div class=\"container\">\r\n		<nav class=\"pull-left\">\r\n			REX_ARTICLE[id=6]\r\n		</nav>\r\n		<div class=\"copyright pull-right\">\r\n			&copy; 2016 – 2023 REDAXO CMS <i class=\"fa fa-heart heart\"></i> ya all!\r\n		</div>\r\n	</div>\r\n</footer>',0,'2023-06-16 12:51:30','admin','2023-06-16 12:51:30','admin','{\"ctype\":[],\"modules\":{\"1\":{\"all\":\"1\"}},\"categories\":{\"all\":\"1\"}}',0);
 /*!40000 ALTER TABLE `rex_template` ENABLE KEYS */;
 UNLOCK TABLES;
 
-DROP TABLE IF EXISTS `rex_user_role`;
-CREATE TABLE `rex_user_role` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `description` text,
-  `perms` text NOT NULL,
-  `createdate` datetime NOT NULL,
-  `revision` int unsigned NOT NULL,
-  `createuser` varchar(255) NOT NULL,
-  `updatedate` datetime NOT NULL,
-  `updateuser` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 DROP TABLE IF EXISTS `rex_ycom_group`;
 CREATE TABLE `rex_ycom_group` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prio` int NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `prio` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -722,49 +684,62 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_ycom_user`;
 CREATE TABLE `rex_ycom_user` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `login` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `firstname` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `activation_key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `session_key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `termsofuse_accepted` tinyint(1) NOT NULL,
-  `new_password_required` tinyint(1) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `login` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `firstname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `status` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activation_key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `termsofuse_accepted` tinyint(1) NOT NULL DEFAULT 0,
+  `new_password_required` tinyint(1) NOT NULL DEFAULT 0,
   `last_action_time` datetime NOT NULL,
   `last_login_time` datetime NOT NULL,
   `termination_time` datetime NOT NULL,
-  `login_tries` int DEFAULT NULL,
-  `ycom_groups` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pic` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slogan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `motto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `login_tries` int(11) DEFAULT NULL,
+  `ycom_groups` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pic` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slogan` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `motto` text COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 LOCK TABLES `rex_ycom_user` WRITE;
 /*!40000 ALTER TABLE `rex_ycom_user` DISABLE KEYS */;
 INSERT INTO `rex_ycom_user` VALUES 
-  (1,'hans@trapper.de','hans@trapper.de','$2y$10$qvExndUq4tN4fNmoUDeuGecawfGmRo2/QFa4omp1a2z1.w0nt64gO','Hans','Trapper','1','922616b4879f1b3a560235852b2c884d','b3de45b67e03d8c9ba348c7b7df0c89d',0,0,'2022-12-14 15:53:57','2022-12-14 15:53:51','0000-00-00 00:00:00',0,'1,2','profile_pic1.jpg','Die Natur schickt keine Rechnung. Oder: Der Weg ist das Ziel.',''),
-  (2,'wanda@hendrix.de','wanda@hendrix.de','$2y$10$01fE2ate/tGfyORNDrnPyOkmSG3kvFeqRzS3MTfnbBIVh4Df854Dq','Wanda','Hendrix','1','f58b858a5f50abf3517e4367c4d1f3d9','18b8098cff6f678538335b16c50e1f63',0,0,'2020-02-22 19:02:10','2020-02-22 19:01:30','0000-00-00 00:00:00',0,'1','profile_pic2.jpg','Der frühe Vogel fängt den Wurm. Aber lohnt es sich, dafür aufzustehen?',''),
-  (3,'rasmus@bengtson.de','rasmus@bengtson.de','$2y$10$wNGcXS/BJQMBPHgPhFWtAOCYqCGp1Tx0dThZGcOb2CCPzpnQEtoAC','Ramus','Bengtson','1','b332b387c6e234b18a970c892ce2b447','400d19e1a9546edd4ca6f41781eaf39b',0,0,'2020-02-22 19:08:22','2020-02-22 19:06:27','0000-00-00 00:00:00',0,'2','profile_pic3.jpg','Lieber einen dicken Bauch vom Saufen, als einen krummen Buckel vom Arbeiten.','');
+  (1,'hans@trapper.de','hans@trapper.de','$2y$10$qvExndUq4tN4fNmoUDeuGecawfGmRo2/QFa4omp1a2z1.w0nt64gO','Hans','Trapper','1','922616b4879f1b3a560235852b2c884d',0,0,'2023-06-16 22:33:00','2023-06-16 22:33:00','0000-00-00 00:00:00',0,'2','profile_pic1.jpg','Die Natur schickt keine Rechnung. Oder: Der Weg ist das Ziel.',''),
+  (2,'wanda@hendrix.de','wanda@hendrix.de','$2y$10$01fE2ate/tGfyORNDrnPyOkmSG3kvFeqRzS3MTfnbBIVh4Df854Dq','Wanda','Hendrix','1','f58b858a5f50abf3517e4367c4d1f3d9',0,0,'2020-02-22 19:02:10','2020-02-22 19:01:30','0000-00-00 00:00:00',0,'1','profile_pic2.jpg','Der frühe Vogel fängt den Wurm. Aber lohnt es sich, dafür aufzustehen?',''),
+  (3,'rasmus@bengtson.de','rasmus@bengtson.de','$2y$10$wNGcXS/BJQMBPHgPhFWtAOCYqCGp1Tx0dThZGcOb2CCPzpnQEtoAC','Ramus','Bengtson','1','b332b387c6e234b18a970c892ce2b447',0,0,'2020-02-22 19:08:22','2020-02-22 19:06:27','0000-00-00 00:00:00',0,'2','profile_pic3.jpg','Lieber einen dicken Bauch vom Saufen, als einen krummen Buckel vom Arbeiten.','');
 /*!40000 ALTER TABLE `rex_ycom_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
+DROP TABLE IF EXISTS `rex_ycom_user_session`;
+CREATE TABLE `rex_ycom_user_session` (
+  `session_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `ip` varchar(39) COLLATE utf8_unicode_ci NOT NULL,
+  `useragent` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `starttime` datetime NOT NULL,
+  `last_activity` datetime NOT NULL,
+  `cookie_key` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`session_id`),
+  UNIQUE KEY `cookie_key` (`cookie_key`),
+  KEY `ycom_user_session_id` (`user_id`),
+  CONSTRAINT `ycom_user_session_id` FOREIGN KEY (`user_id`) REFERENCES `rex_ycom_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 DROP TABLE IF EXISTS `rex_yform_email_template`;
 CREATE TABLE `rex_yform_email_template` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `mail_from` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `mail_from_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `mail_reply_to` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `mail_reply_to_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `subject` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `body_html` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attachments` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `mail_from` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `mail_from_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `mail_reply_to` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `mail_reply_to_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `subject` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body_html` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attachments` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `updatedate` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
@@ -780,146 +755,139 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rex_yform_field`;
 CREATE TABLE `rex_yform_field` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `table_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prio` int NOT NULL,
-  `type_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `db_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `table_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prio` int(11) NOT NULL,
+  `type_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `db_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `list_hidden` tinyint(1) NOT NULL,
   `search` tinyint(1) NOT NULL,
-  `name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `not_required` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `multiple` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expanded` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `choices` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `choice_attributes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `options` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `default` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `size` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `only_empty` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `table` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `hashname` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password_hash` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `no_db` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password_label` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `field` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `empty_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `empty_option` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `max_size` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `types` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fields` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `position` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `width` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `height` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `show_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `html` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notice` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `regex` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pattern` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `format` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `current_date` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `widget` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attributes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `query` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `year_start` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `year_end` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `values` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rules` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nonce_key` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nonce_referer` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sizes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `messages` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rules_message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `script` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `max` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `infotext_1` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `infotext_2` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `scope` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `columns` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `googleapikey` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `unit` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `precision` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `scale` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `preview` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `label` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `not_required` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `multiple` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expanded` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `choices` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `choice_attributes` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `default` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `size` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `only_empty` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hashname` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_hash` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_db` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_label` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `field` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `empty_value` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `empty_option` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `max_size` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `types` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fields` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `width` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `height` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `show_value` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `html` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notice` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `regex` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pattern` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `format` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `current_date` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `widget` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attributes` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `query` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `year_start` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `year_end` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `values` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rules` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nonce_key` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nonce_referer` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sizes` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `messages` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rules_message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `script` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `max` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `infotext_1` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `infotext_2` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scope` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `columns` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `googleapikey` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unit` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `precision` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scale` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `preview` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prepend` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `append` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `placeholder` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group_by` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group_attributes` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `preferred_choices` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `output_values` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `modify_default` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `relation_table` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `filter` text COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 LOCK TABLES `rex_yform_field` WRITE;
 /*!40000 ALTER TABLE `rex_yform_field` DISABLE KEYS */;
 INSERT INTO `rex_yform_field` VALUES 
-  (1,'rex_ycom_user',1,'value','html','',0,0,'html1','html1','','','','','','','','','','','','','','','','','','','','','','','','','','','','<div class=\"row\"><div class=\"col-md-6\">','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (2,'rex_ycom_user',2,'value','text','',1,1,'login','translate:login','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (3,'rex_ycom_user',3,'validate','empty','',1,0,'login','','','','','','','','','','','translate:ycom_please_enter_login','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (4,'rex_ycom_user',4,'validate','unique','',1,0,'login','','','','','','','','','','','translate:ycom_this_login_exists_already','rex_ycom_user','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (5,'rex_ycom_user',5,'value','text','',0,1,'email','translate:email','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (6,'rex_ycom_user',6,'validate','empty','',1,0,'email','','','','','','','','','','','translate:ycom_please_enter_email','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (7,'rex_ycom_user',7,'validate','email','',1,0,'email','','','','','','','','','','','translate:ycom_please_enter_email','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (8,'rex_ycom_user',8,'validate','unique','',1,0,'email','','','','','','','','','','','translate:ycom_this_email_exists_already','rex_ycom_user','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (9,'rex_ycom_user',9,'value','ycom_auth_password','',1,1,'password','translate:password','','','','','','','','','','translate:ycom_validate_password_policy_rules_error','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','{\"length\":{\"min\":8},\"letter\":{\"min\":1},\"lowercase\":{\"min\":1},\"uppercase\":{\"min\":1}}','','','','','','1','','','','','','','','','',''),
-  (10,'rex_ycom_user',10,'value','text','',0,1,'firstname','translate:firstname','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (11,'rex_ycom_user',11,'value','text','',0,1,'name','translate:name','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (12,'rex_ycom_user',12,'value','html','',0,0,'html2','html2','','','','','','','','','','','','','','','','','','','','','','','','','','','','</div><div class=\"col-md-6\">','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (13,'rex_ycom_user',13,'value','choice','',0,1,'status','translate:status','','0','','translate:ycom_account_inactive_termination=-3,translate:ycom_account_inactive_logins=-2,translate:ycom_account_inactive=-1,translate:ycom_account_requested=0,translate:ycom_account_confirm=1,translate:ycom_account_active=2','','','-1','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (14,'rex_ycom_user',14,'value','generate_key','',1,1,'activation_key','translate:activation_key','','','','','','','','','1','','','','','','','','','','','','','','','','','','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (15,'rex_ycom_user',15,'value','generate_key','',1,1,'session_key','translate:session_key','','','','','','','','','1','','','','','','','','','','','','','','','','','','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (16,'rex_ycom_user',16,'value','checkbox','tinyint(1)',1,1,'termsofuse_accepted','translate:termsofuse_accepted','','','','','','','0','','','','','','','0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (17,'rex_ycom_user',17,'value','checkbox','tinyint(1)',1,1,'new_password_required','translate:new_password_required','','','','','','','0','','','','','','','0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (18,'rex_ycom_user',18,'value','datestamp','',1,1,'last_action_time','translate:last_action_time','','','','','','','','','2','','','','','','','','','','','','','','','','','','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (19,'rex_ycom_user',19,'value','datestamp','',1,1,'last_login_time','translate:last_login_time','','','','','','','','','2','','','','','','','','','','','','','','','','','','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (20,'rex_ycom_user',20,'value','datestamp','',1,1,'termination_time','translate:termination_time','','','','','','','','','2','','','','','','','','','','','','','','','','','','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (21,'rex_ycom_user',21,'value','integer','',0,1,'login_tries','translate:login_tries','','','','','','','0','','','','','','','','','','','','','','','','','','','','','','translate:ycom_login_tries_info','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (22,'rex_ycom_user',22,'value','html','',0,0,'html3','html3','','','','','','','','','','','','','','','','','','','','','','','','','','','','</div></div>','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (23,'rex_ycom_user',23,'value','be_manager_relation','',1,1,'ycom_groups','translate:ycom_groups','','1','','','','','','','','','rex_ycom_group','','','','','name','1','','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (24,'rex_ycom_group',1,'value','text','',0,1,'name','translate:name','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (25,'rex_ycom_group',2,'validate','empty','',1,0,'name','','','','','','','','','','','translate:ycom_group_yform_enter_name','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (26,'rex_ycom_user',24,'value','be_media','text',1,1,'pic','Profilfoto','','0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','1'),
-  (27,'rex_ycom_user',25,'value','textarea','text',1,1,'slogan','Motto','','','','','','','','','','','','','','0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
-  (28,'rex_ycom_group',3,'value','prio','int',1,0,'prio','Reihenfolge','','','','','','','','','','','','','','','','','','','','','','name','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');
+  (1,'rex_ycom_user',1,'value','html','',0,0,'html1','html1','','','','','','','','','','','','','','','','','','','','','','','','','','','','<div class=\"row\"><div class=\"col-md-6\">','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (2,'rex_ycom_user',2,'value','text','',1,1,'login','translate:login','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (3,'rex_ycom_user',3,'validate','empty','',1,0,'login','','','','','','','','','','','translate:ycom_please_enter_login','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (4,'rex_ycom_user',4,'validate','unique','',1,0,'login','','','','','','','','','','','translate:ycom_this_login_exists_already','rex_ycom_user','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (5,'rex_ycom_user',5,'value','text','',0,1,'email','translate:email','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (6,'rex_ycom_user',6,'validate','empty','',1,0,'email','','','','','','','','','','','translate:ycom_please_enter_email','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (7,'rex_ycom_user',7,'validate','email','',1,0,'email','','','','','','','','','','','translate:ycom_please_enter_email','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (8,'rex_ycom_user',8,'validate','unique','',1,0,'email','','','','','','','','','','','translate:ycom_this_email_exists_already','rex_ycom_user','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (9,'rex_ycom_user',9,'value','ycom_auth_password','',1,1,'password','translate:password','','','','','','','','','','translate:ycom_validate_password_policy_rules_error','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','{\"length\":{\"min\":8},\"letter\":{\"min\":1},\"lowercase\":{\"min\":1},\"uppercase\":{\"min\":1}}','','','','','','1','','','','','','','','','','','','','','','','','','','',''),
+  (10,'rex_ycom_user',10,'value','text','',0,1,'firstname','translate:firstname','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (11,'rex_ycom_user',11,'value','text','',0,1,'name','translate:name','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (12,'rex_ycom_user',12,'value','html','',0,0,'html2','html2','','','','','','','','','','','','','','','','','','','','','','','','','','','','</div><div class=\"col-md-6\">','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (13,'rex_ycom_user',13,'value','choice','',0,1,'status','translate:status','','0','','translate:ycom_account_inactive_termination=-3,translate:ycom_account_inactive_logins=-2,translate:ycom_account_inactive=-1,translate:ycom_account_requested=0,translate:ycom_account_confirm=1,translate:ycom_account_active=2','','','-1','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (14,'rex_ycom_user',14,'value','generate_key','',1,1,'activation_key','translate:activation_key','','','','','','','','','1','','','','','','','','','','','','','','','','','','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (16,'rex_ycom_user',17,'value','checkbox','tinyint(1)',1,1,'termsofuse_accepted','translate:termsofuse_accepted','','','','','','','0','','','','','','','0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (17,'rex_ycom_user',18,'value','checkbox','tinyint(1)',1,1,'new_password_required','translate:new_password_required','','','','','','','0','','','','','','','0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (18,'rex_ycom_user',19,'value','datestamp','',1,1,'last_action_time','translate:last_action_time','','','','','','','','','2','','','','','','','','','','','','','','','','','','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (19,'rex_ycom_user',20,'value','datestamp','',1,1,'last_login_time','translate:last_login_time','','','','','','','','','2','','','','','','','','','','','','','','','','','','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (20,'rex_ycom_user',21,'value','datestamp','',1,1,'termination_time','translate:termination_time','','','','','','','','','2','','','','','','','','','','','','','','','','','','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (21,'rex_ycom_user',22,'value','integer','',0,1,'login_tries','translate:login_tries','','','','','','','0','','','','','','','','','','','','','','','','','','','','','','translate:ycom_login_tries_info','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (22,'rex_ycom_user',23,'value','html','',0,0,'html3','html3','','','','','','','','','','','','','','','','','','','','','','','','','','','','</div></div>','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (23,'rex_ycom_user',24,'value','be_manager_relation','',1,1,'ycom_groups','translate:ycom_groups','','1','','','','','','','','','rex_ycom_group','','','','','name','1','','1','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (24,'rex_ycom_group',1,'value','text','',0,1,'name','translate:name','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (25,'rex_ycom_group',2,'validate','empty','',1,0,'name','','','','','','','','','','','translate:ycom_group_yform_enter_name','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (26,'rex_ycom_user',24,'value','be_media','text',1,1,'pic','Profilfoto','','0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','1','','','','','','','','','',''),
+  (27,'rex_ycom_user',25,'value','textarea','text',1,1,'slogan','Motto','','','','','','','','','','','','','','0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (28,'rex_ycom_group',3,'value','prio','int',1,0,'prio','Reihenfolge','','','','','','','','','','','','','','','','','','','','','','name','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (29,'rex_ycom_user',7,'validate','type','',1,0,'email','','','','','','','','','','','translate:ycom_please_enter_email','','','','','','','email','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''),
+  (30,'rex_ycom_user',15,'validate','unique','',1,0,'activation_key','','','','','','','','','','','translate:ycom_this_activation_key_exists_already','rex_ycom_user','','','','','','','','0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');
 /*!40000 ALTER TABLE `rex_yform_field` ENABLE KEYS */;
 UNLOCK TABLES;
 
-DROP TABLE IF EXISTS `rex_yform_history`;
-CREATE TABLE `rex_yform_history` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `table_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dataset_id` int NOT NULL,
-  `action` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `timestamp` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `dataset` (`table_name`,`dataset_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-DROP TABLE IF EXISTS `rex_yform_history_field`;
-CREATE TABLE `rex_yform_history_field` (
-  `history_id` int NOT NULL,
-  `field` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`history_id`,`field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 DROP TABLE IF EXISTS `rex_yform_table`;
 CREATE TABLE `rex_yform_table` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL,
-  `table_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `list_amount` int NOT NULL DEFAULT '50',
-  `list_sortfield` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'id',
-  `list_sortorder` enum('ASC','DESC') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ASC',
-  `prio` int NOT NULL,
+  `table_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `list_amount` int(11) NOT NULL DEFAULT 50,
+  `list_sortfield` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'id',
+  `list_sortorder` enum('ASC','DESC') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ASC',
+  `prio` int(11) NOT NULL,
   `search` tinyint(1) NOT NULL,
   `hidden` tinyint(1) NOT NULL,
   `export` tinyint(1) NOT NULL,
   `import` tinyint(1) NOT NULL,
   `mass_deletion` tinyint(1) NOT NULL,
   `mass_edit` tinyint(1) NOT NULL,
-  `schema_overwrite` tinyint(1) NOT NULL DEFAULT '1',
+  `schema_overwrite` tinyint(1) NOT NULL DEFAULT 1,
   `history` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `table_name` (`table_name`)
@@ -933,47 +901,4 @@ INSERT INTO `rex_yform_table` VALUES
 /*!40000 ALTER TABLE `rex_yform_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
-DROP TABLE IF EXISTS `rex_yrewrite_alias`;
-CREATE TABLE `rex_yrewrite_alias` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `alias_domain` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `domain_id` int NOT NULL,
-  `clang_start` int NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `alias_domain` (`alias_domain`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-DROP TABLE IF EXISTS `rex_yrewrite_domain`;
-CREATE TABLE `rex_yrewrite_domain` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `domain` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mount_id` int NOT NULL,
-  `start_id` int NOT NULL,
-  `notfound_id` int NOT NULL,
-  `clangs` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `clang_start` int NOT NULL,
-  `clang_start_auto` tinyint(1) NOT NULL,
-  `clang_start_hidden` tinyint(1) NOT NULL,
-  `robots` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title_scheme` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `auto_redirect` tinyint(1) NOT NULL,
-  `auto_redirect_days` int NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `domain` (`domain`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-DROP TABLE IF EXISTS `rex_yrewrite_forward`;
-CREATE TABLE `rex_yrewrite_forward` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `domain_id` int NOT NULL,
-  `status` int NOT NULL,
-  `url` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `article_id` int NOT NULL,
-  `clang` int NOT NULL,
-  `extern` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `media` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `movetype` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expiry_date` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 SET FOREIGN_KEY_CHECKS = 1;
