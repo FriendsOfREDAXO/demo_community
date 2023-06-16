@@ -1,6 +1,35 @@
 # REDAXO Community Demo - Changelog
 
 
+## 4.1.0 – 17.06.2023
+
+### Neu
+
+* Verwendete AddOns aktualisiert
+  * markitup 3.7.3 -> 3.7.4
+  * ycom 4.0.11 -> 4.2.0
+  * yform 4.0.4 -> 4.1.1
+  * yrewrite 2.9.1 -> 2.10.0
+  * Neues Addon yform_media_file hinzugefügt (Profilfoto)
+* Neue Console-Commands zur Erstellung der Demo-Exporte @aeberhard
+  * `demo_community:dump_tables`, erstellt Datenbank-Backup `backups/demo_community.sql`
+  * beim Datenbank-Backup werden nur die benötigten Tabellen exportiert
+  * `demo_community:dump_files`, erstellt Datei-Backup `backups/demo_community.tar.gz`
+* Content-Änderungen
+  * Profil - Gruppe von checkbox_sql auf choice geändert
+  * YFORM - Link zu Object-Params auf aktuelle YFORM-Dokumentation auf github
+  * YFORM - Beispiel-Formular an YFORM Version 4 angepasst
+  * YFORM - Beispiel-Formular wird nach absenden wieder angezeigt
+* Demo-Backups mit den Console-Commands neu erstellt
+* Ordner `media` bei Deinstallation leeren
+* Ordner `resources` bei Deinstallation löschen
+* PHP-Version in package.yml >=7.4, <8.3
+
+### Bugfixes
+
+* Bei Deinstallation Backup-Daten aus dem Backup-Ordner löschen - https://github.com/FriendsOfREDAXO/demo_community/issues/38
+
+
 ## 4.0.2 – 02.01.2023
 
 ### Bugfixes
