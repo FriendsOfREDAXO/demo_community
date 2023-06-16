@@ -1,17 +1,77 @@
 <?php
 
-class rex_demo_community {
-    public static function install() {
+class rex_demo_community
+{
+    /** @var string[] */
+    private const EXPDIR = [
+        'media', 'resources',
+    ];
+
+    /**
+     * @return array<string>
+     */
+    public static function dump_files(): array
+    {
+
         $addon = rex_addon::get('demo_community');
-        
+        $exportPath = $addon->getPath('backups') . DIRECTORY_SEPARATOR  . 'demo_community.tar.gz';
+
+        rex_backup::exportFiles(self::EXPDIR, $exportPath);
+
+        return [];
+    }
+
+    /**
+     * @return array<string>
+     */
+    public static function dump_tables(): array
+    {
+        $addon = rex_addon::get('demo_community');
+        $exportPath = $addon->getPath('backups') . DIRECTORY_SEPARATOR  . 'demo_community.sql';
+        $error = [];
+
+        $EXPTABLES = [
+            rex::getTable('article'),
+            rex::getTable('article_slice'),
+            rex::getTable('clang'),
+            rex::getTable('config'),
+            rex::getTable('markitup_profiles'),
+            rex::getTable('media'),
+            rex::getTable('media_category'),
+            rex::getTable('media_manager_type'),
+            rex::getTable('media_manager_type_effect'),
+            rex::getTable('metainfo_field'),
+            rex::getTable('metainfo_type'),
+            rex::getTable('module'),
+            rex::getTable('template'),
+            rex::getTable('ycom_group'),
+            rex::getTable('ycom_user'),
+            rex::getTable('ycom_user_session'),
+            rex::getTable('yform_email_template'),
+            rex::getTable('yform_field'),
+            rex::getTable('yform_table'),
+        ];
+
+        $hasContent = rex_backup::exportDb($exportPath, $EXPTABLES);
+        if (false === $hasContent) {
+            $error[] = rex_i18n::msg('backup_file_could_not_be_generated') . ' ' . $exportPath;
+        }
+
+        return $error;
+    }
+
+    public static function install()
+    {
+        $addon = rex_addon::get('demo_community');
+
         // in some cases rex_addon has the old package.yml in cache. But we need our new merged package.yml
         $addon->loadProperties();
 
-        $errors = array();
+        $errors = [];
 
         // step 1: select missing packages we need to download
-        $missingPackages = array();
-        $packages = array();
+        $missingPackages = [];
+        $packages = [];
         if (isset($addon->getProperty('setup')['packages'])) {
             $packages = $addon->getProperty('setup')['packages'];
         }
@@ -26,7 +86,7 @@ class rex_demo_community {
                 rex_logger::logException($e);
             }
 
-            if (count($errors) == 0) {
+            if (0 == count($errors)) {
                 foreach ($packages as $id => $fileId) {
 
                     $localPackage = rex_package::get($id);
@@ -34,7 +94,7 @@ class rex_demo_community {
                         continue; // skip system packages, they don’t need to be downloaded
                     }
 
-                    $installerPackage = isset($packagesFromInstaller[$id]['files'][$fileId]) ? $packagesFromInstaller[$id]['files'][$fileId] : false;
+                    $installerPackage = $packagesFromInstaller[$id]['files'][$fileId] ?? false;
                     if (!$installerPackage) {
                         $errors[] = $addon->i18n('package_not_available', $id);
                     }
@@ -47,7 +107,7 @@ class rex_demo_community {
         }
 
         // step 2: download required packages
-        if (count($missingPackages) > 0 && count($errors) == 0) {
+        if (count($missingPackages) > 0 && 0 == count($errors)) {
             foreach ($missingPackages as $id => $fileId) {
 
                 $installerPackage = $packagesFromInstaller[$id]['files'][$fileId];
@@ -81,7 +141,7 @@ class rex_demo_community {
         }
 
         // step 3: install and activate packages based on install sequence from config
-        if (count($addon->getProperty('setup')['installSequence']) > 0 && count($errors) == 0) {
+        if (count($addon->getProperty('setup')['installSequence']) > 0 && 0 == count($errors)) {
             foreach ($addon->getProperty('setup')['installSequence'] as $id) {
 
                 $package = rex_package::get($id);
@@ -111,7 +171,7 @@ class rex_demo_community {
         }
 
         // step 4: import database
-        if (count($addon->getProperty('setup')['dbimport']) > 0 && count($errors) == 0) {
+        if (count($addon->getProperty('setup')['dbimport']) > 0 && 0 == count($errors)) {
             foreach ($addon->getProperty('setup')['dbimport'] as $import) {
                 $file = rex_backup::getDir() . '/' . $import;
                 $success = rex_backup::importDb($file);
@@ -122,7 +182,7 @@ class rex_demo_community {
         }
 
         // step 5: import files
-        if (count($addon->getProperty('setup')['fileimport']) > 0 && count($errors) == 0) {
+        if (count($addon->getProperty('setup')['fileimport']) > 0 && 0 == count($errors)) {
             foreach ($addon->getProperty('setup')['fileimport'] as $import) {
                 $file = rex_backup::getDir() . '/' . $import;
                 $success = rex_backup::importFiles($file);
