@@ -21,6 +21,10 @@ requires:
         backup: '>=2.5.1'
         structure/content: '>=2.9.0'
     redaxo: '>=5.9.0'
+    php:
+        version: '>=7.4, <8.3'
 
 console_commands:
     'demo_community:install': rex_command_demo_community_install
+    'demo_community:dump_files': rex_command_demo_community_dumpfiles
+    'demo_community:dump_tables': rex_command_demo_community_dumptables
