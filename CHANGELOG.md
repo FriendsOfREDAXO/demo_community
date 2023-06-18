@@ -4,6 +4,8 @@
 
 **Achtung** Security-Fix für die Community-Demo
 
+Die Schwachstelle wurde uns von Tim Conrad gemeldet @Tim-Conrad. Vielen Dank dafür!
+
 ### Bugfixes
 
 * Die Benutzerdaten wurden bei der Ausgabe auf der Website nicht escaped! Dadurch ist ein XSS-Angriff möglich!
