@@ -1,5 +1,14 @@
 # REDAXO Community Demo - Changelog
 
+## 4.1.1 – 18.06.2023
+
+**Achtung** Security-Fix für die Community-Demo
+
+### Bugfixes
+
+* Die Benutzerdaten wurden bei der Ausgabe auf der Website nicht escaped! Dadurch ist ein XSS-Angriff möglich!
+  * Template `05 . TEMPLATE` - Ausgabe der Benutzerdaten mit rex_escape()
+  * Modul `05 . Neueste User` - Ausgabe der Benutzerdaten mit rex_escape()
 
 ## 4.1.0 – 17.06.2023
 
