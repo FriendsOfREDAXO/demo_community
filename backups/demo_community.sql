@@ -708,11 +708,9 @@ CREATE TABLE `rex_ycom_user` (
 LOCK TABLES `rex_ycom_user` WRITE;
 /*!40000 ALTER TABLE `rex_ycom_user` DISABLE KEYS */;
 INSERT INTO `rex_ycom_user` VALUES 
-  (1,'hans@trapper.de','hans@trapper.de','$2y$10$qvExndUq4tN4fNmoUDeuGecawfGmRo2/QFa4omp1a2z1.w0nt64gO','Hans<script>alert(\'firstname\')</script>','Trapper<script>alert(\'name\')</script>','1','922616b4879f1b3a560235852b2c884d',0,0,'2023-06-16 22:33:00','2023-06-16 22:33:00','0000-00-00 00:00:00',0,'2','profile_pic1.jpg','Die Natur schickt keine Rechnung. Oder: Der Weg ist das Ziel.\r\n<script>alert(\'motto\')</script>',''),
+  (1,'hans@trapper.de','hans@trapper.de','$2y$10$qvExndUq4tN4fNmoUDeuGecawfGmRo2/QFa4omp1a2z1.w0nt64gO','Hans','Trapper','1','922616b4879f1b3a560235852b2c884d',0,0,'2023-06-16 22:33:00','2023-06-16 22:33:00','0000-00-00 00:00:00',0,'2','profile_pic1.jpg','Die Natur schickt keine Rechnung. Oder: Der Weg ist das Ziel.',''),
   (2,'wanda@hendrix.de','wanda@hendrix.de','$2y$10$01fE2ate/tGfyORNDrnPyOkmSG3kvFeqRzS3MTfnbBIVh4Df854Dq','Wanda','Hendrix','1','f58b858a5f50abf3517e4367c4d1f3d9',0,0,'2020-02-22 19:02:10','2020-02-22 19:01:30','0000-00-00 00:00:00',0,'1','profile_pic2.jpg','Der frühe Vogel fängt den Wurm. Aber lohnt es sich, dafür aufzustehen?',''),
-  (3,'rasmus@bengtson.de','rasmus@bengtson.de','$2y$10$wNGcXS/BJQMBPHgPhFWtAOCYqCGp1Tx0dThZGcOb2CCPzpnQEtoAC','Ramus','Bengtson','1','b332b387c6e234b18a970c892ce2b447',0,0,'2020-02-22 19:08:22','2020-02-22 19:06:27','0000-00-00 00:00:00',0,'2','profile_pic3.jpg','Lieber einen dicken Bauch vom Saufen, als einen krummen Buckel vom Arbeiten.',''),
-  (4,'ae@aesoft.de','ae@aesoft.de','$2y$10$E4aV5016nGStDpMLH1GfLen8nokK8L3nlHpGc8k1FDvW0nYR.kdwu','Andreas','Eberhard','1','2c017cd091e929053e8c98eb5a445f5e',0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00',0,'1,2','','',''),
-  (5,'aeberhard@aesoft.de','aeberhard@aesoft.de','$2y$10$5/A/MmQ7QagwYJL7RecOZO8DyED49RcpC5L40QRInh.cTsoa6WhsC','Andreas<script>alert(\'firstname\')</script>','Eberhard<script>alert(\'name\')</script>','1','6dfe756f5ef8e4fc337cc9d1d127284d',0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00',0,'1,2','','','');
+  (3,'rasmus@bengtson.de','rasmus@bengtson.de','$2y$10$wNGcXS/BJQMBPHgPhFWtAOCYqCGp1Tx0dThZGcOb2CCPzpnQEtoAC','Ramus','Bengtson','1','b332b387c6e234b18a970c892ce2b447',0,0,'2020-02-22 19:08:22','2020-02-22 19:06:27','0000-00-00 00:00:00',0,'2','profile_pic3.jpg','Lieber einen dicken Bauch vom Saufen, als einen krummen Buckel vom Arbeiten.','');
 /*!40000 ALTER TABLE `rex_ycom_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -730,14 +728,6 @@ CREATE TABLE `rex_ycom_user_session` (
   KEY `ycom_user_session_id` (`user_id`),
   CONSTRAINT `ycom_user_session_id` FOREIGN KEY (`user_id`) REFERENCES `rex_ycom_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-LOCK TABLES `rex_ycom_user_session` WRITE;
-/*!40000 ALTER TABLE `rex_ycom_user_session` DISABLE KEYS */;
-INSERT INTO `rex_ycom_user_session` VALUES 
-  ('tpfplmdf6s6ak556d7sf70d1pq',5,'::1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36','2023-06-18 22:18:48','2023-06-18 22:37:17',NULL);
-/*!40000 ALTER TABLE `rex_ycom_user_session` ENABLE KEYS */;
-UNLOCK TABLES;
-
 DROP TABLE IF EXISTS `rex_yform_email_template`;
 CREATE TABLE `rex_yform_email_template` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
