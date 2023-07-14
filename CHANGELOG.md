@@ -1,5 +1,12 @@
 # REDAXO Community Demo - Changelog
 
+## 4.1.2 – 14.07.2023
+
+### Bugfixes
+
+* Im Export der Tabellen waren Test-User zur Behebung der Sicherheitslücke enthalten, diese wurden auf der Startseite angezeigt.
+  * Table-Export bereinigt @aeberhard
+
 ## 4.1.1 – 18.06.2023
 
 **Achtung** Security-Fix für die Community-Demo
