@@ -7,11 +7,15 @@
 * Hinweis auf YRewrite / .htaccess beim Setup @Koala #40
   * lang-Datei erweitert
   * Button zum direkten Aufruf des YRewrite-Setup
+* `update.php` hinzugefügt, für Updates aus dem Installer
 
 ### Bugfixes
 
-* Im Export der Tabellen waren Test-User zur Behebung der Sicherheitslücke enthalten, diese wurden auf der Startseite angezeigt.
-  * Table-Export bereinigt @aeberhard
+* Im Export der Tabellen waren Test-User zur Behebung der Sicherheitslücke enthalten, diese wurden auf der Startseite angezeigt. Test-User entfernt.
+* Das Registrierungsformular stand noch auf Debug, Debug entfernt
+* EMail-Templates angepasst
+  * bei den Links fehlte die Domain, rex::getServer() hinzugefügt @ischfr #36
+* Table-Export bereinigt neu erstellt @aeberhard
 
 ## 4.1.1 – 18.06.2023
 
