@@ -22,6 +22,16 @@ if (rex_post('install', 'boolean')) {
 $content = '<p>' . $this->i18n('install_description') . '</p>';
 $content .= '<p><button class="btn btn-send" type="submit" name="install" value="1"><i class="rex-icon fa-download"></i> ' . $this->i18n('install_button') . '</button></p>';
 
+// Hinweis auf YRewrite / .htaccess
+$content .= '
+<p>
+Zum Abschluß der Installation muss durch YRewrite noch eine .htaccess-Datei im Root-Ordner erstellt werden. Dies erfolgt über das Setup des YRewrite-AddOns.
+</p>
+';
+$content .= '
+<p><a class="btn btn-primary" href="'.rex_url::backendPage('yrewrite/setup').'">YRewrite Setup aufrufen</a></p>
+';
+
 $fragment = new rex_fragment();
 $fragment->setVar('title', $this->i18n('install_heading'), false);
 $fragment->setVar('body', $content, false);
