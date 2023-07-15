@@ -10,12 +10,11 @@ if (rex_post('install', 'boolean')) {
 
     // show result messages
     if (count($errors) > 0) {
-        echo rex_view::error("<p>" . $this->i18n('installation_error') . "</p><ul><li>" . implode("</li><li>", $errors) . "</li></ul>");
+        echo rex_view::error('<p>' . $this->i18n('installation_error') . '</p><ul><li>' . implode('</li><li>', $errors) . '</li></ul>');
     } else {
-        echo rex_view::success("<p>" . $this->i18n('installation_success') . "</p>");
+        echo rex_view::success('<p>' . $this->i18n('installation_success') . '</p>');
     }
 }
-
 
 /* setup info */
 
@@ -23,14 +22,8 @@ $content = '<p>' . $this->i18n('install_description') . '</p>';
 $content .= '<p><button class="btn btn-send" type="submit" name="install" value="1"><i class="rex-icon fa-download"></i> ' . $this->i18n('install_button') . '</button></p>';
 
 // Hinweis auf YRewrite / .htaccess
-$content .= '
-<p>
-Zum Abschluß der Installation muss durch YRewrite noch eine .htaccess-Datei im Root-Ordner erstellt werden. Dies erfolgt über das Setup des YRewrite-AddOns.
-</p>
-';
-$content .= '
-<p><a class="btn btn-primary" href="'.rex_url::backendPage('yrewrite/setup').'">YRewrite Setup aufrufen</a></p>
-';
+$content .= '<p>' . $this->i18n('yrewrite_description') . '</p>';
+$content .= '<p><a class="btn btn-primary" href="' . rex_url::backendPage('yrewrite/setup') . '">' . $this->i18n('yrewrite_button') . '</a></p>';
 
 $fragment = new rex_fragment();
 $fragment->setVar('title', $this->i18n('install_heading'), false);
@@ -44,7 +37,6 @@ $content = '
 
 echo $content;
 
-
 /* package info from README.md */
 
 $content = '';
@@ -55,8 +47,8 @@ $version = $package->getVersion();
 $author = $package->getAuthor();
 $supportPage = $package->getSupportPage();
 
-if (is_readable($package->getPath('README.'. rex_i18n::getLanguage() .'.md'))) {
-    [$readmeToc, $readmeContent] = rex_markdown::factory()->parseWithToc(rex_file::require($package->getPath('README.'. rex_i18n::getLanguage() .'.md')), 2, 3, [
+if (is_readable($package->getPath('README.' . rex_i18n::getLanguage() . '.md'))) {
+    [$readmeToc, $readmeContent] = rex_markdown::factory()->parseWithToc(rex_file::require($package->getPath('README.' . rex_i18n::getLanguage() . '.md')), 2, 3, [
         rex_markdown::SOFT_LINE_BREAKS => false,
         rex_markdown::HIGHLIGHT_PHP => true,
     ]);
@@ -83,7 +75,6 @@ if (!empty($content)) {
     $fragment->setVar('body', $content, false);
     echo $fragment->parse('core/page/section.php');
 }
-
 
 /* credits */
 
