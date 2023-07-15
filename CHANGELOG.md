@@ -1,6 +1,12 @@
 # REDAXO Community Demo - Changelog
 
-## 4.1.2 – 14.07.2023
+## 4.1.2 – 16.07.2023
+
+### Neu
+
+* Hinweis auf YRewrite / .htaccess beim Setup @Koala #40
+  * lang-Datei erweitert
+  * Button zum direkten Aufruf des YRewrite-Setup
 
 ### Bugfixes
 
