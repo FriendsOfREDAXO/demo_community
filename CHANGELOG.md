@@ -1,5 +1,15 @@
 # REDAXO Community Demo - Changelog
 
+## 4.1.3 - xx.xx.2023
+
+### Bugfixes
+
+* Fix #12 - Photo-Swipe für kleine Displays anpassen
+  * `base.css` - .wrapper.transitions auskommentiert
+* Fix #41 - Source-Map-Fehler: Error: request failed with status 404
+  * Source-Map in ` bootstrap.min.css` entfernt
+* `demo_community.tar.gz` neu erstellt @aeberhard
+
 ## 4.1.2 – 16.07.2023
 
 ### Neu
