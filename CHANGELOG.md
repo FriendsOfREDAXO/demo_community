@@ -4,6 +4,7 @@
 
 ### Bugfixes
 
+* Fix Typo in Meta-Infos für art_legend_icon, Danke @Koala
 * Fix #12 - Photo-Swipe für kleine Displays anpassen
   * `base.css` - .wrapper.transitions auskommentiert
 * Fix #41 - Source-Map-Fehler: Error: request failed with status 404

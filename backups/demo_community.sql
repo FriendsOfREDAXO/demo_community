@@ -563,7 +563,7 @@ INSERT INTO `rex_metainfo_field` VALUES
   (2,'Untertitel (Headerfoto)','art_subtitle',1,'',1,'','',NULL,'',NULL,NULL,'2020-02-21 20:19:36','admin','2020-02-21 20:19:36','admin'),
   (3,'Individueller Title-Tag','art_title',2,'',1,'','',NULL,'',NULL,NULL,'2020-02-21 22:28:15','admin','2020-02-21 22:28:15','admin'),
   (4,'Headerbild','art_file',3,'',6,'','',NULL,'',NULL,NULL,'2020-02-21 22:29:02','admin','2020-02-21 22:29:02','admin'),
-  (5,'Für die zweite Menü-Ebene stehen folgende Icons stehen zur Verfügung: https://themify.me/themify-icons','art_legend_icon',4,'',12,'','',NULL,'',NULL,NULL,'2020-02-21 22:29:34','admin','2020-02-22 16:45:28','admin'),
+  (5,'Für die zweite Menü-Ebene stehen folgende Icons zur Verfügung: https://themify.me/themify-icons','art_legend_icon',4,'',12,'','',NULL,'',NULL,NULL,'2020-02-21 22:29:34','admin','2023-07-27 01:39:56','admin'),
   (6,'Navi-Icon, EIngabe z.B. ti-star','art_nav_icon',5,'',1,'','',NULL,'',NULL,NULL,'2020-02-21 22:29:58','admin','2020-02-21 22:29:58','admin'),
   (7,'Schlagworte','art_keywords',6,'',1,'','',NULL,'',NULL,NULL,'2022-12-14 10:29:55','admin','2022-12-14 10:30:38','admin'),
   (8,'Beschreibung','art_description',7,'',1,'','',NULL,'',NULL,NULL,'2022-12-14 10:30:59','admin','2022-12-14 10:30:59','admin');
