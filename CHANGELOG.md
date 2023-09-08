@@ -10,6 +10,7 @@
 * Fix #41 - Source-Map-Fehler: Error: request failed with status 404
   * Source-Map in ` bootstrap.min.css` entfernt
 * `demo_community.tar.gz` neu erstellt @aeberhard
+* Fix missing double quote in Template 05, @Koala
 
 ## 4.1.2 – 16.07.2023
 
