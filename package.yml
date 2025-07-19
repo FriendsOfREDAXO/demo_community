@@ -1,5 +1,5 @@
 package: demo_community
-version: 4.1.3
+version: 4.2.0
 author: 'Friends Of REDAXO'
 supportpage: 'https://github.com/FriendsOfREDAXO/demo_community'
 page:
@@ -21,8 +21,7 @@ requires:
         backup: '>=2.5.1'
         structure/content: '>=2.9.0'
     redaxo: '>=5.9.0'
-    php:
-        version: '>=7.4, <8.3'
+    php: '>=8.0'
 
 console_commands:
     'demo_community:install': rex_command_demo_community_install
