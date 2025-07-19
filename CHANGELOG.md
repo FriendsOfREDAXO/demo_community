@@ -1,5 +1,11 @@
 # REDAXO Community Demo - Changelog
 
+## 4.2.0 - 19.07.2025
+
+### Features
+
+* Ermöglicht die Nutzung mit PHP 8.3+
+
 ## 4.1.3 - xx.xx.2023
 
 ### Bugfixes
